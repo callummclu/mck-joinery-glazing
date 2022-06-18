@@ -1,0 +1,1 @@
+export const AdminIndex = () => <p>Content to be added here later...</p>

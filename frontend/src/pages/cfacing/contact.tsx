@@ -1,0 +1,1 @@
+export const Contact = () => <>Contact Page</>
