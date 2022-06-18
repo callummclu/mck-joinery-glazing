@@ -46,7 +46,7 @@ const Nav = ({children,brand,style={color:"rgb(60,60,60)"}}:any) =>{
 const Logout = () => {
   const { logout } = useAuth0();
 
-  return <button onClick={()=>logout()}>logout</button>
+  return <p style={{cursor:"pointer"}} onClick={()=>logout()}>logout</p>
 }
 
 export const AdminNav = () => {

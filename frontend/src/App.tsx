@@ -13,6 +13,8 @@ import { AdminIndex } from './pages/admin/adminIndex'
 import { Error } from './pages/error'
 import { Gallery } from './pages/cfacing/gallery'
 import { Contact } from './pages/cfacing/contact'
+import { AdminGallery } from './pages/admin/Gallery'
+import { EditSingleGallery, AddSingleGallery } from './pages/admin/SingleGallery'
 
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
@@ -40,7 +42,12 @@ function App() {
           :
             <>  
               {isAuthenticated && (
-                <Route path="/" element={<AdminIndex/>}/>
+                <>
+                  <Route path="/" element={<AdminIndex/>}/>
+                  <Route path="/categories/gallery" element={<AdminGallery/>}/>
+                  <Route path="/categories/gallery/:id" element={<EditSingleGallery/>}/>
+                  <Route path="/categories/gallery/add" element={<AddSingleGallery/>}/>
+                </>
               )}
                   <Route path="/login" element={<Login/>}/>
             </>
