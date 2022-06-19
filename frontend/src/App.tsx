@@ -15,6 +15,8 @@ import { Gallery } from './pages/cfacing/gallery'
 import { Contact } from './pages/cfacing/contact'
 import { AdminGallery } from './pages/admin/Gallery'
 import { EditSingleGallery, AddSingleGallery } from './pages/admin/SingleGallery'
+import { GalleryCategories } from './pages/admin/GalleryCategories'
+import { AddCategory } from './pages/admin/AddCategory'
 
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
@@ -44,9 +46,12 @@ function App() {
               {isAuthenticated && (
                 <>
                   <Route path="/" element={<AdminIndex/>}/>
-                  <Route path="/categories/gallery" element={<AdminGallery/>}/>
-                  <Route path="/categories/gallery/:id" element={<EditSingleGallery/>}/>
-                  <Route path="/categories/gallery/add" element={<AddSingleGallery/>}/>
+                  <Route path="/gallery" element={<GalleryCategories/>}/>
+                  <Route path="/gallery/:category" element={<AdminGallery/>}/>
+                  <Route path="/gallery/:category/:id" element={<EditSingleGallery/>}/>
+                  <Route path="/gallery/:category/add" element={<AddSingleGallery/>}/>
+
+                  <Route path="/category/add" element={<AddCategory/>}/>
                 </>
               )}
                   <Route path="/login" element={<Login/>}/>

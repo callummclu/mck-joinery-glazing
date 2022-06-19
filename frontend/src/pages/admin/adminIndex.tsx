@@ -8,7 +8,7 @@ export const AdminIndex = () => {
     <Container>
     	<h1>Welcome to Admin Portal</h1>
     	<p>Choose a Section...</p>
-    	<Button onClick={()=>window.location.href = window.location + "categories/gallery"}>Gallery</Button>
+    	<Button onClick={()=>window.location.href = window.location + "gallery"}>Gallery</Button>
     </Container>
     </>
 	)
