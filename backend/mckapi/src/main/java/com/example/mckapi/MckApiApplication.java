@@ -1,5 +1,4 @@
 package com.example.mckapi;
-
 import com.example.mckapi.model.Category;
 import com.example.mckapi.model.GalleryItem;
 import com.example.mckapi.repository.CategoryRepository;
@@ -8,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 @SpringBootApplication
 public class MckApiApplication implements CommandLineRunner {
-
     private final GalleryRepository galleryRepository;
     private final CategoryRepository categoryRepository;
-
     @Autowired
-    public MckApiApplication(GalleryRepository galleryRepository, CategoryRepository categoryRepository){
+    public MckApiApplication(
+            GalleryRepository galleryRepository,
+            CategoryRepository categoryRepository
+    ){
         this.galleryRepository = galleryRepository;
         this.categoryRepository = categoryRepository;
     }
@@ -28,7 +27,7 @@ public class MckApiApplication implements CommandLineRunner {
             galleryRepository.save(new GalleryItem("image Title","image url","image description","Bay"));
         }
         if(categoryRepository.findAll().isEmpty()){
-            categoryRepository.save(new Category("Bay"));
+            categoryRepository.save(new Category("Bay","hello","glazing"));
         }
 
     }

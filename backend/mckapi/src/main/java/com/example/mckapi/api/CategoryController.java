@@ -1,10 +1,7 @@
 package com.example.mckapi.api;
-
 import com.example.mckapi.model.Category;
-import com.example.mckapi.model.GalleryItem;
+
 import com.example.mckapi.repository.CategoryRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,18 +28,32 @@ public class CategoryController {
     }
 
     @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
-    @RequestMapping(value="/category/add",method= RequestMethod.POST,produces= MediaType.APPLICATION_JSON_VALUE)
-    public void addOneCategory(@RequestBody String type) throws JsonProcessingException {
+    @RequestMapping(value="/category/type/{type}",method= RequestMethod.GET,produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<Category> getCategoryByName(@PathVariable String type){return categoryRepository.findByType(type);}
 
-        Category category = new Category(type);
+    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @RequestMapping(value="/category/add",method= RequestMethod.POST,produces= MediaType.APPLICATION_JSON_VALUE)
+    public void addOneCategory(@RequestBody Category item){
+
+        Category category = new Category(item.type, item.commentary, item.parent);
 
         categoryRepository.save(category);
     }
 
     @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @RequestMapping(value="/category/edit/{id}",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Category ChangeOneCategory(@PathVariable String id, @RequestBody Category item) {
+        Category _item = item;
+        _item.setId(id);
+        categoryRepository.save(_item);
+        return _item;
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
     @RequestMapping(value="/category/{id}",method= RequestMethod.DELETE,produces= MediaType.APPLICATION_JSON_VALUE)
-    public void deleteOneCategory(@PathVariable String id){
+    public List<Category> deleteOneCategory(@PathVariable String id){
         categoryRepository.delete(categoryRepository.findById(id).orElse(null));
+        return categoryRepository.findAll();
     }
 
 }

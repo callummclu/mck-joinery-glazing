@@ -8,33 +8,26 @@ import java.util.UUID;
 
 @Document
 public class Category {
-
     @Field
     public String type;
+    @Field
+    public String commentary;
+    @Field
+    public String parent;
     @Id
     public String id;
-
-    public Category(String type){
+    public Category(String type, String commentary,String parent){
         this.type = type;
-        this.id = UUID.randomUUID().toString();;
+        this.id = UUID.randomUUID().toString();
+        this.commentary = commentary;
+        this.parent = parent;
     }
-
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){this.id = id;}
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
-        return String.format("Category[id='%s', type='%s'",id,type);
+        return String.format("Category[id='%s', type='%s', commentary='%s'",id,type,commentary);
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

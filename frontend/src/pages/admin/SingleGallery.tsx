@@ -1,6 +1,8 @@
 import {Container, Title, Text, Divider, Image,Center, TextInput, Textarea, Button} from '@mantine/core'
 import {useParams} from 'react-router-dom'
 import React, {useState, useEffect, useRef } from 'react'
+import styled from 'styled-components'
+import {convertToBase64, convertFromBase64} from '../../helpers/base64'
 
 export const EditSingleGallery = (props:any) => {
 
@@ -10,8 +12,9 @@ export const EditSingleGallery = (props:any) => {
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
 
 	const [itemData, setItemData] = useState<any>()
+	const [ImageData, setImageData] = useState<any>()
 
-	const saveItem = ()=>{
+	const saveItem = async ()=>{
 
 		let title:string = (titleRef! as any).current.value
 		let description:string = (descriptionRef! as any).current.value
@@ -23,7 +26,7 @@ export const EditSingleGallery = (props:any) => {
 			},
 			body:JSON.stringify({
 				"title": title as string,
-				"image": "" as string,
+				"image": "",
 				"description": description as string,
 				"categoryType": category as string
 			})
@@ -67,9 +70,31 @@ export const EditSingleGallery = (props:any) => {
 					my="xs" 
 					variant="dashed"
 				/>
-				<Center my="xl" style={{display:"flex",flexWrap:"wrap"}}>
- 					<Image p="xs" width={350} height={280} src={""} withPlaceholder/>
-				</Center>
+				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
+
+ 					<Image 
+ 						p="xs" 
+ 						width={350} 
+ 						height={280} 
+ 						src={""} 
+ 						withPlaceholder
+
+ 					/>
+ 					<input 
+ 						type="file"
+ 						style={{
+ 							width:"350px",
+ 							height:"280px",
+ 							position: "absolute",
+ 							opacity: 0
+ 						}}
+ 						onChange={(e:any)=>{
+ 							setImageData(e.target.files[0])
+ 						}}
+ 					/>
+
+				</StyledImage>
+
 
 				<TextInput ref={titleRef} label="Title" defaultValue={itemData?.title} />
 				<Textarea ref={descriptionRef} label="Description" defaultValue={itemData?.description}/>
@@ -87,11 +112,11 @@ export const AddSingleGallery = () => {
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
 
-	const SaveItem = ()=>{
+	const [ImageData, setImageData] = useState<any>()
 
+	const SaveItem = ()=>{
 		let title:any = titleRef
 		let description:any = descriptionRef
-
 
 		fetch(`http://localhost:8080/gallery/${category}/add`,{
 			method:"POST",
@@ -123,9 +148,22 @@ export const AddSingleGallery = () => {
 					my="xs" 
 					variant="dashed"
 				/>
-				<Center my="xl" style={{display:"flex",flexWrap:"wrap"}}>
+				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
  					<Image p="xs" width={350} height={280} src={""} withPlaceholder/>
-				</Center>
+ 					<input 
+ 						type="file"
+ 						style={{
+ 							width:"350px",
+ 							height:"280px",
+ 							position: "absolute",
+ 							opacity: 0
+ 						}}
+ 						onChange={(e:any)=>{
+ 							setImageData(e.target.files[0])
+ 						}}
+ 						accept=".png,.jpg,.jpeg"
+ 					/>
+				</StyledImage>
 
 				<TextInput ref={titleRef} label="Title"/>
 				<Textarea ref={descriptionRef} label="Description"/>
@@ -134,3 +172,14 @@ export const AddSingleGallery = () => {
 		</>
 	)
 }
+
+const StyledImage = styled.div`
+	transition-duration: 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	overflow:hidden;
+	&:hover{
+		filter: brightness(0.8);
+	}
+`

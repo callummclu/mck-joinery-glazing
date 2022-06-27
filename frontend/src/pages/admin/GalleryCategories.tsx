@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Button, Container, Title, Text, Divider,Stack } from '@mantine/core'
+import { Button, Container, Title, Text, Divider,Stack,Group } from '@mantine/core'
 
 export const GalleryCategories = () => {
 
@@ -12,6 +12,19 @@ export const GalleryCategories = () => {
 				setCategories(res_json)
 			})
 	},[])
+
+	const removeCategory = (id:string) => {
+		fetch(`http://localhost:8080/category/${id}`,{
+			method:"DELETE"
+		}).then(async (res:any)=> {
+			let res_json = await res.json()
+			setCategories(res_json)
+		})
+	}
+
+	const editCategory = (id:string) => {
+		console.log(`edit: ${id}`)
+	}
 
 	return (
 		<>
@@ -30,7 +43,7 @@ export const GalleryCategories = () => {
 					labelPosition="center"
 				/>
 				<Stack>
-			{categories?.map((e:any)=><Button variant="outline" onClick={()=>window.location.href = (window.location+'/'+e.type)}>{e.type}</Button>)}
+			{categories?.map((e:any)=><Group><Button style={{flexGrow:1}} variant="outline" onClick={()=>window.location.href = (window.location+'/'+e.type)}>{e.type}</Button><Button onClick={()=>window.location.href = (window.location.origin+'/category/edit/'+e.id)} color="gray">Edit</Button><Button onClick={()=>removeCategory(e.id)} color="red">Delete</Button></Group>)}
 			</Stack>
 			</Container>
 		</>
