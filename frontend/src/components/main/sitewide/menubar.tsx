@@ -29,23 +29,18 @@ export const Menubar = () => {
     			<div className={toggleMenubar ? "active" : ""}>
     				<div style={{flexDirection:"column"}} onMouseOver={()=>setJoineryToggle(true)} onMouseLeave={()=>setJoineryToggle(false)}>
 	    				<p style={{margin:"25px"}}><a href={window.location.origin + `/gallery/Joinery`}>Joinery</a></p>
-	    				{joineryToggle && (
-	    					<>
+
 	    						<div style={{position:"absolute", background:"#11192f", marginTop:"140px",width:"auto"}}>
 	    							{data?.filter((e:any)=>e.parent == "Joinery").map((e:any) => <p style={{margin:"25px"}}><a href={window.location.origin + `/gallery/${e.type}`}>{e.type}</a></p>)}
 	    						</div>
-	    					</>)
-	    				}
+	    				
+	    				
     				</div>
     				<div style={{flexDirection:"column"}} onMouseOver={()=>setGlazingToggle(true)} onMouseLeave={()=>setGlazingToggle(false)}>
     					<p style={{margin:"25px"}}><a href={window.location.origin + `/gallery/Glazing`}>Glazing</a></p>
-    					{glazingToggle && (
-    						<>
     							<div style={{position:"absolute", background:"#11192f", marginTop:"200px",width:"auto",flexDirection:"column"}}>
     								{data?.filter((e:any)=>e.parent == "Glazing").map((e:any) => <p style={{margin:"25px"}}><a href={window.location.origin + `/gallery/${e.type}`}>{e.type}</a></p>)}
     							</div>
-    						</>)
-    					}
     				</div>
     			</div>
 			</div>
