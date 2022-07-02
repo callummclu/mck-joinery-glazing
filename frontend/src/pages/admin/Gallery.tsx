@@ -5,6 +5,7 @@ import {GalleryItem} from '../../types/Client/GalleryTypes'
 export const AdminGallery = () => {
 
 	let [imageArr,setImageArr] = useState<any>()
+	const [currPage, setCurrPage] = useState<number>(1)
 
 	const { category } = useParams()
 
@@ -36,14 +37,14 @@ export const AdminGallery = () => {
 
 
 				<Center my="xl" style={{display:"flex",flexWrap:"wrap"}}>
-					{imageArr?.map((e:any) => <Image caption={e.title} key={e.id} onClick={()=>window.location.href = (`${window.location.origin}/gallery/${e.categoryType}/${e.id}`)} p="xs" width={300} height={180} src={e.image} withPlaceholder/>)}
+					{imageArr?.slice((currPage - 1) * 10, currPage*10 || imageArr.length)?.map((e:any) => <Image radius="md" caption={e.title} key={e.id} onClick={()=>window.location.href = (`${window.location.origin}/gallery/${e.categoryType}/${e.id}`)} p="xs" width={300} height={180} src={e.image} withPlaceholder/>)}
 							
 				</Center>
 
 
  				<Center mb="xl">
  					
- 					{imageArr?.length > 0 && <Pagination total={Math.ceil(imageArr?.length/10)} radius="md" />}
+ 					{imageArr?.length > 0 && <Pagination page={currPage} onChange={setCurrPage} total={Math.ceil(imageArr?.length/10)} radius="md" />}
  					
 				</Center>
 

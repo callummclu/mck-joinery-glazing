@@ -26,7 +26,7 @@ export const EditSingleGallery = (props:any) => {
 			},
 			body:JSON.stringify({
 				"title": title as string,
-				"image": "",
+				"image": ImageData || '',
 				"description": description as string,
 				"categoryType": category as string
 			})
@@ -73,12 +73,11 @@ export const EditSingleGallery = (props:any) => {
 				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
 
  					<Image 
+ 						radius="md"
  						p="xs" 
  						width={350} 
  						height={280} 
- 						src={""} 
- 						withPlaceholder
-
+ 						src={ImageData} 
  					/>
  					<input 
  						type="file"
@@ -89,7 +88,7 @@ export const EditSingleGallery = (props:any) => {
  							opacity: 0
  						}}
  						onChange={(e:any)=>{
- 							setImageData(e.target.files[0])
+ 							convertToBase64(e.target.files[0],setImageData)
  						}}
  					/>
 
@@ -125,7 +124,7 @@ export const AddSingleGallery = () => {
 			},
 			body:JSON.stringify({
 				title: title!.current.value,
-				image: "",
+				image: ImageData || '',
 				description: description!.current.value,
 				categoryType: category
 			})
@@ -149,7 +148,7 @@ export const AddSingleGallery = () => {
 					variant="dashed"
 				/>
 				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
- 					<Image p="xs" width={350} height={280} src={""} withPlaceholder/>
+ 					<Image radius="md" p="xs" width={350} height={280} src={ImageData}/>
  					<input 
  						type="file"
  						style={{
@@ -159,7 +158,7 @@ export const AddSingleGallery = () => {
  							opacity: 0
  						}}
  						onChange={(e:any)=>{
- 							setImageData(e.target.files[0])
+ 							convertToBase64(e.target.files[0],setImageData)
  						}}
  						accept=".png,.jpg,.jpeg"
  					/>
@@ -179,7 +178,14 @@ const StyledImage = styled.div`
 	align-items: center;
 	justify-content:center;
 	overflow:hidden;
-	&:hover{
-		filter: brightness(0.8);
+
+	&>*{
+		background-image:url('https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg');
+		background-size: cover;
+		background-position:center;
+		&:hover{
+			cursor:pointer;
+			
+		}
 	}
 `

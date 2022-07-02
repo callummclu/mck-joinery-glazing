@@ -27,8 +27,7 @@ export const Gallery = () => {
 		<>
 			<h1>{categoryData?.type}</h1>
 			<p>{categoryData?.commentary}</p>
-			<hr/>
-			{data ? data?.map((e:any)=><p>{e.title}<br/>{e.image}<br/>{e.description}</p>) : <><div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"calc(100vh - 150px)"}}><TailSpin fill="#06bcee" stroke="#06bcee" height="6em" width="" strokeWidth="2"/></div></>}
+			<div style={{display:"flex"}}>{data ? data?.map((e:any)=><p>{e.title}<br/><img width={250} src={e.image}/><br/>{e.description}</p>) : <><div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"calc(100vh - 150px)"}}><TailSpin fill="#06bcee" stroke="#06bcee" height="6em" width="" strokeWidth="2"/></div></>}</div>
 		</>
 	)
 }

@@ -27,6 +27,6 @@ public class GalleryItem {
     public void setId(String id){this.id = id;}
     @Override
     public String toString() {
-        return String.format("GalleryItem[id='%s', title='%s', image='%s',description='%s']",id,title,image,description);
+        return String.format("GalleryItem[id='%s', title='%s',image='%s',description='%s']",id,title,image,description);
     }
 }

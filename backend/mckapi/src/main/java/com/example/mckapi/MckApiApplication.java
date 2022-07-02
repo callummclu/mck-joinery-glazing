@@ -24,7 +24,7 @@ public class MckApiApplication implements CommandLineRunner {
     @Override
     public void run(String... args){
         if(galleryRepository.findAll().isEmpty()){
-            galleryRepository.save(new GalleryItem("image Title","image url","image description","Bay"));
+            galleryRepository.save(new GalleryItem("image Title","","image description","Bay"));
         }
         if(categoryRepository.findAll().isEmpty()){
             categoryRepository.save(new Category("Bay","hello","glazing"));

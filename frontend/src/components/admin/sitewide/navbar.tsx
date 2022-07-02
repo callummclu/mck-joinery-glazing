@@ -22,14 +22,15 @@ export const AdminNav = ({children}:any) => {
 				padding="md"
 				styles={{
 					main:{
-						background:"rgba(215, 228, 247,0.15)"
+						background:"rgba(215, 228, 247,0.15)",
+						minHeight:"calc(100vh - 75px)"
 					}
 				}}
 		
 				header={
 					<Header height={65} p="xs">
 					<Group>
-						<Title onClick={()=>window.location.href = window.location.origin}>MCKAP</Title>
+						<Title style={{cursor:"pointer"}} onClick={()=>window.location.href = window.location.origin}>MCKAP</Title>
 						<Text>MCK Admin Portal</Text>
 					</Group>
 					</Header>
