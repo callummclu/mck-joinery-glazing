@@ -12,7 +12,7 @@ export const EditSingleGallery = (props:any) => {
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
 
 	const [itemData, setItemData] = useState<any>()
-	const [ImageData, setImageData] = useState<any>("")
+	const [ImageData, setImageData] = useState<any>()
 
 	const saveItem = async ()=>{
 
@@ -32,7 +32,9 @@ export const EditSingleGallery = (props:any) => {
 			})
 		})
 			.then(async (res:any)=>{
-				window.location.replace(`${window.location.origin}/gallery/${category}`)
+				let res_json = await res.json()
+				setItemData(res_json)
+				console.log(res_json)
 			})
 	}
 
@@ -42,7 +44,6 @@ export const EditSingleGallery = (props:any) => {
 			.then(async (res:any)=>{
 				let res_json = await res.json()
 				setItemData(res_json)
-				setImageData(res_json.image)
 			})
 	},[])
 
@@ -76,7 +77,7 @@ export const EditSingleGallery = (props:any) => {
  						p="xs" 
  						width={350} 
  						height={280} 
- 						src={ImageData  || 'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg'} 
+ 						src={ImageData} 
  					/>
  					<input 
  						type="file"
@@ -89,14 +90,9 @@ export const EditSingleGallery = (props:any) => {
  						onChange={(e:any)=>{
  							convertToBase64(e.target.files[0],setImageData)
  						}}
- 						accept=".png,.jpg,.jpeg"
-
  					/>
 
 				</StyledImage>
-				<Center>
-					{ImageData.length > 0 && <Button color={"red"} onClick={()=>setImageData('')}>Remove Image</Button>}
-				</Center>
 
 
 				<TextInput ref={titleRef} label="Title" defaultValue={itemData?.title} />
@@ -115,7 +111,7 @@ export const AddSingleGallery = () => {
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
 
-	const [ImageData, setImageData] = useState<any>("")
+	const [ImageData, setImageData] = useState<any>()
 
 	const SaveItem = ()=>{
 		let title:any = titleRef
@@ -152,8 +148,7 @@ export const AddSingleGallery = () => {
 					variant="dashed"
 				/>
 				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
- 					<Image radius="md" p="xs" width={350} height={280} src={ImageData || 'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg'}/>
-
+ 					<Image radius="md" p="xs" width={350} height={280} src={ImageData}/>
  					<input 
  						type="file"
  						style={{
@@ -168,9 +163,7 @@ export const AddSingleGallery = () => {
  						accept=".png,.jpg,.jpeg"
  					/>
 				</StyledImage>
-				<Center>
-					{ImageData.length > 0 && <Button color={"red"} onClick={()=>setImageData('')}>Remove Image</Button>}
-				</Center>
+
 				<TextInput ref={titleRef} label="Title"/>
 				<Textarea ref={descriptionRef} label="Description"/>
 				<Button onClick={SaveItem} my="md" mr="md">Add Item</Button>
@@ -185,7 +178,14 @@ const StyledImage = styled.div`
 	align-items: center;
 	justify-content:center;
 	overflow:hidden;
-	border-radius:5px;
-	overflow:hidden;
 
+	&>*{
+		background-image:url('https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg');
+		background-size: cover;
+		background-position:center;
+		&:hover{
+			cursor:pointer;
+			
+		}
+	}
 `
