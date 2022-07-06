@@ -1,4 +1,4 @@
-import {Container, Title, Text, Divider, Image,Center, TextInput, Textarea, Button} from '@mantine/core'
+import {Container, Title, Text, Divider, Image,Center, TextInput, Textarea, Button, Select} from '@mantine/core'
 import {useParams} from 'react-router-dom'
 import React, {useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
@@ -10,9 +10,12 @@ export const EditSingleGallery = (props:any) => {
 
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
+	const galleryItemAreaRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 
+
+	const [galleryItemArea, setGalleryItemArea] = useState<any>()
 	const [itemData, setItemData] = useState<any>()
-	const [ImageData, setImageData] = useState<any>()
+	const [ImageData, setImageData] = useState<String[]>([])
 
 	const saveItem = async ()=>{
 
@@ -70,6 +73,7 @@ export const EditSingleGallery = (props:any) => {
 					my="xs" 
 					variant="dashed"
 				/>
+				<div style={{display:"flex", gap:"20px", justifyContent: "center"}}>
 				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
 
  					<Image 
@@ -77,7 +81,7 @@ export const EditSingleGallery = (props:any) => {
  						p="xs" 
  						width={350} 
  						height={280} 
- 						src={ImageData} 
+ 						src={ImageData[1] ? ImageData[1].toString() : ""} 
  					/>
  					<input 
  						type="file"
@@ -94,9 +98,44 @@ export const EditSingleGallery = (props:any) => {
 
 				</StyledImage>
 
+				{galleryItemArea == "beforeAfter" && <StyledImage style={{display:"flex",flexWrap:"wrap"}}>
+
+ 					<Image 
+ 						radius="md"
+ 						p="xs" 
+ 						width={350} 
+ 						height={280} 
+ 						src={ImageData[0] ? ImageData[0].toString() : ""} 
+ 					/>
+ 					<input 
+ 						type="file"
+ 						style={{
+ 							width:"350px",
+ 							height:"280px",
+ 							position: "absolute",
+ 							opacity: 0
+ 						}}
+ 						onChange={(e:any)=>{
+ 							convertToBase64(e.target.files[0],setImageData)
+ 						}}
+ 					/>
+
+				</StyledImage>}
+				</div>
+
 
 				<TextInput ref={titleRef} label="Title" defaultValue={itemData?.title} />
 				<Textarea ref={descriptionRef} label="Description" defaultValue={itemData?.description}/>
+				<Select
+					required
+					onChange={setGalleryItemArea}
+					label="Pick a Parent Post Type"
+					placeholder={itemData?.galleryItemAreaRef}
+					data={[
+						{ value: 'normalImage', label: 'Normal Image' },
+						{ value: 'beforeAfter', label: 'Before / After Image' }
+					]}
+			    />
 				<Button onClick={saveItem} my="md" mr="md">Save Changes</Button>
 				<Button onClick={()=>window.location.replace(window.location.origin + 'categories/gallery')} my="md" variant="outline">Cancel Changes</Button>
 			</Container>
@@ -111,7 +150,7 @@ export const AddSingleGallery = () => {
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
 
-	const [ImageData, setImageData] = useState<any>()
+	const [ImageData, setImageData] = useState<string[]>()
 
 	const SaveItem = ()=>{
 		let title:any = titleRef
@@ -148,7 +187,7 @@ export const AddSingleGallery = () => {
 					variant="dashed"
 				/>
 				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
- 					<Image radius="md" p="xs" width={350} height={280} src={ImageData}/>
+ 					<Image radius="md" p="xs" width={350} height={280} src={(ImageData || [""])[0].toString()}/>
  					<input 
  						type="file"
  						style={{

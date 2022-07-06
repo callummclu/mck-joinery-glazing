@@ -3,6 +3,10 @@ import com.example.mckapi.model.Category;
 import com.example.mckapi.model.GalleryItem;
 import com.example.mckapi.repository.CategoryRepository;
 import com.example.mckapi.repository.GalleryRepository;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +28,8 @@ public class MckApiApplication implements CommandLineRunner {
     @Override
     public void run(String... args){
         if(galleryRepository.findAll().isEmpty()){
-            galleryRepository.save(new GalleryItem("image Title","","image description","Bay"));
+            List<String> imageArr = Collections.<String> emptyList();
+            galleryRepository.save(new GalleryItem("image Title",imageArr,"image description","Bay","beforeAfter"));
         }
         if(categoryRepository.findAll().isEmpty()){
             categoryRepository.save(new Category("Bay","hello","glazing"));
