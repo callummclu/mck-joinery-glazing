@@ -2,7 +2,7 @@ import {Container, Title, Text, Divider, Image,Center, TextInput, Textarea, Butt
 import {useParams} from 'react-router-dom'
 import React, {useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import {convertToBase64, convertFromBase64} from '../../helpers/base64'
+import {convertToBase64, convertFromBase64} from '../helpers/base64'
 
 export const EditSingleGallery = (props:any) => {
 

@@ -1,6 +1,6 @@
 import { AppShell, Navbar, Header, Title, Text, Group, MediaQuery, Burger,Button } from '@mantine/core';
 import React, {useState} from 'react'
-import '../../../styles/admin/components/adminNav.css'
+import '../styles/adminNav.css'
 import { useAuth0 } from '@auth0/auth0-react'
 import { BsImage } from 'react-icons/bs'
 

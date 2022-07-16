@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import {Container, Divider, Center, Pagination, Grid, Image, Button, Text, Title, Stack} from '@mantine/core'
-import {GalleryItem} from '../../types/Client/GalleryTypes'
+import {GalleryItem} from '../types/Client/GalleryTypes'
 export const AdminGallery = () => {
 
 	let [imageArr,setImageArr] = useState<any>()
