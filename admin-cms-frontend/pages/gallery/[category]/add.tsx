@@ -10,8 +10,8 @@ import { Nav } from "../../../components/navbar"
 
 export const AddSingleGallery: NextPage = (props:any) => {
 
-    const router = useRouter()
-    const {category, id} = router.query
+    const router:any = useRouter()
+    const {category, id}:any = router.query
 
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
@@ -39,8 +39,6 @@ export const AddSingleGallery: NextPage = (props:any) => {
 			})
 	}
 
-    console.log(ImageData)
-
 	return (
 		<>
         <Nav>
@@ -58,6 +56,7 @@ export const AddSingleGallery: NextPage = (props:any) => {
 				<StyledImage style={{display:"flex",flexWrap:"wrap"}}>
  					<Image radius="md" p="xs" width={350} height={280} src={(ImageData || "").toString()}/>
  					<input 
+						alt="image"
  						type="file"
  						style={{
  							width:"350px",
