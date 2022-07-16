@@ -11,7 +11,7 @@ export const GalleryCategories: NextPage = () => {
 
 
 
-    let {data,error} =  useSWR("https://mck-joinery-glazing-backend.herokuapp.com/category",fetcher)
+    let {data,error}:any =  useSWR("https://mck-joinery-glazing-backend.herokuapp.com/category",fetcher)
 	const removeCategory = (id:string) => {
 	 	fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category/${id}`,{
 			method:"DELETE"
@@ -44,7 +44,7 @@ export const GalleryCategories: NextPage = () => {
 					labelPosition="center"
 				/>
 				<Stack>
-			{categories?.map((e:any)=><Group><Button style={{flexGrow:1}} variant="outline" onClick={()=>window.location.href = (window.location+'/'+e.type)}>{e.type}</Button><Button onClick={()=>window.location.href = (window.location.origin+'/category/edit/'+e.id)} color="gray">Edit</Button><Button onClick={()=>removeCategory(e.id)} color="red">Delete</Button></Group>)}
+			{categories?.map((e:any)=><Group key={e}><Button style={{flexGrow:1}} variant="outline" onClick={()=>window.location.href = (window.location+'/'+e.type)}>{e.type}</Button><Button onClick={()=>window.location.href = (window.location.origin+'/category/edit/'+e.id)} color="gray">Edit</Button><Button onClick={()=>removeCategory(e.id)} color="red">Delete</Button></Group>)}
 			</Stack>
 			</Container>
         </Nav>

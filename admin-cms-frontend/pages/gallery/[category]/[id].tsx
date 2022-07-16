@@ -10,8 +10,8 @@ import { Nav } from "../../../components/navbar"
 
 export const EditSingleGallery: NextPage = (props:any) => {
 
-    const router = useRouter()
-    const {category, id} = router.query
+    const router:any = useRouter()
+    const {category, id}:any = router.query
 
 
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
@@ -41,7 +41,6 @@ export const EditSingleGallery: NextPage = (props:any) => {
 		})
 			.then(async (res:any)=>{
 				let res_json = await res.json()
-				console.log(res_json)
 			})
 	}
 

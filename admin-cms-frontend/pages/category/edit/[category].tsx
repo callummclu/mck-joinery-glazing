@@ -13,8 +13,8 @@ export const EditCategory: NextPage = () => {
 	const commentaryRef = useRef<any>()
 	const parentCategoryRef = useRef<any>()
 
-    const router = useRouter()
-    const {id} = router.query
+    const router:any = useRouter()
+    const {id}:any = router.query
 
     const {data,error} = useSWR(`https://mck-joinery-glazing-backend.herokuapp.com/category/${id}`,fetcher)
 
