@@ -1,3 +1,9 @@
+## MCK Joinery Glazing Site/CMS Admin Portal
+
+A small website to allow for the display of work done by a company.
+
+---
+
 ### Basic runtime info
 
 - Java backend runs on port: 8080
