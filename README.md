@@ -21,6 +21,6 @@ built using
 built using
 - Typescript
 - React
+  - Nextjs
   - Styled Components
   - Mantine
-  - (PLAN TO MOVE TO NEXTJS IN FUTURE)
