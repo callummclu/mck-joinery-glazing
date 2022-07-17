@@ -10,9 +10,8 @@ export const Nav = () => {
                 <LeftFixedDiv>
                     <HiMenuAlt2 size={35} color={'white'}/>
                 </LeftFixedDiv>
-                
-                <LogoDiv/>
-                <SubLogoDiv/>
+                    <LogoDiv/>
+                    <SubLogoDiv/>
             </NavBarStyled>
         </>
     )
@@ -20,13 +19,15 @@ export const Nav = () => {
 
 
 const NavBarStyled = styled.div`
-    background:rgb(60,60,60);
+    background:#354B8C;
     width:100%;
     display:flex;
     height:75px;
     justify-content:center;
 
     @media screen and (min-width: 768px){
+        width: calc(100% - 40px);
+        padding-left: 40px;
         justify-content: flex-start;
     }
 
