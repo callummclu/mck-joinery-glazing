@@ -2,11 +2,31 @@ import type { NextPage } from 'next'
 import styled from "styled-components"
 import {TbBrandGithub} from 'react-icons/tb'
 import styles from '../styles/Home.module.css'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
   
   return(
     <>
+      <Head>
+                  {/* Global Site Tag (gtag.js) - Google Analytics */}
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+                }}
+              />
+      </Head>
       <div className={styles.pageUnderConstructionContainer}>
           <InfoDiv className={styles.revCamo}>
               <h1>MCK Joinery Glazing</h1>
