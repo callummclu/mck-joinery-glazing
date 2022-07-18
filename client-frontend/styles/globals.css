@@ -7,3 +7,9 @@ body {
     padding:0;
     scroll-behavior: smooth;
 }
+
+a,a:visited{
+  color:white;
+  text-decoration: none;
+  cursor: pointer;
+}

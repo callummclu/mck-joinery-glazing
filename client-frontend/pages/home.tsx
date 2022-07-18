@@ -30,12 +30,12 @@ const Home: NextPage = () => {
             <GrayContainer>
                 <MenuBar {...menuItems}/>
                 <ImageShowcase {...showcaseImages}/>
-                <CenteredTextDiv>
+                <CenteredTextDiv id="About-Us">
                     <h1>About Us</h1>
                     <p>{aboutUsText}</p>
                 </CenteredTextDiv>
                 <CardContainer/>
-                <CenteredTextDiv>
+                <CenteredTextDiv id="Contact-Us">
                     <h1>Contact Us</h1>
                     <p>{aboutUsText}</p>
                 </CenteredTextDiv>

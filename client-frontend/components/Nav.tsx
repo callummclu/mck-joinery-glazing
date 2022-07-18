@@ -3,10 +3,14 @@ import MCKLogoBW from '../public/MCK.png'
 import JoineryGlazing from '../public/Joinery|Glazing.png'
 import {HiMenuAlt2} from 'react-icons/hi'
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 
 export const Nav = () => {
     
     const [menuToggle, setMenuToggle] = useState(false);
+
+    const router = useRouter()
+
 
     return(
         <>
@@ -15,16 +19,16 @@ export const Nav = () => {
                     <HiMenuAlt2 size={35} color={'white'} onClick={()=>setMenuToggle(!menuToggle)}/>
                 </LeftFixedDiv>
                 {menuToggle && <DropDownMenu>
-                    <p>About Us</p>
-                    <p>Contact Us</p>
-                    <p>Gallery</p>
+                    <p><a href="#About-Us">About Us</a></p>
+                    <p><a href="#Contact-Us">Contact Us</a></p>
+                    <p><a onClick={() => router.push('/gallery')}>Gallery</a></p>
                 </DropDownMenu>}
                 <LogoDiv/>
                 <SubLogoDiv/>
                 <RightFixedItems>
-                    <p>About Us</p>
-                    <p>Contact Us</p>
-                    <p>Gallery</p>
+                    <p><a href="#About-Us">About Us</a></p>
+                    <p><a href="#Contact-Us">Contact Us</a></p>
+                    <p><a onClick={() => router.push('/gallery')}>Gallery</a></p>
                 </RightFixedItems>
             </NavBarStyled>
         </>
