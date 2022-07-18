@@ -1,10 +1,7 @@
-import type { NextPage } from 'next'
+import { useRef } from "react"
 import styled from "styled-components"
-import {TbBrandGithub} from 'react-icons/tb'
-import styles from '../styles/Home.module.css'
-import { useRef } from 'react'
 
-const Contact: NextPage = () => {
+export const Contact = () => {
   
     const nameRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
@@ -20,7 +17,6 @@ const Contact: NextPage = () => {
         <>
             <FormCard>
                 <ContactForm onSubmit={contactSubmit}>
-                    <h1>Contact Us</h1>
 
                     <label htmlFor='contact-name'>Name</label>
                     <FormInput id='contact-name' type="text" ref={nameRef} required/>
@@ -38,10 +34,8 @@ const Contact: NextPage = () => {
 }
 
 const ContactForm = styled.form`
-    width:300px;
+    width:400px;
     padding:20px;
-    background:white;
-    box-shadow: 0 0 10px 0 lightgray;
 
     &>*{
         transition-duration:0.15s;
@@ -81,6 +75,7 @@ const FormTextarea = styled.textarea`
         background:rgba(60,60,60,0.15);
         outline: none;
     }
+    margin-bottom:10px;
 `
 
 const FormButton = styled.button`
@@ -97,11 +92,10 @@ const FormButton = styled.button`
 
 const FormCard = styled.div`
    width:100%;
-   height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:white;
+    padding-bottom:50px;
 `
 
 

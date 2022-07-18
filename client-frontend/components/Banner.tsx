@@ -14,6 +14,7 @@ export const Banner = () => {
 
 const BannerDiv = styled.div`
     height: 350px;
+    width:100%;
     text-align:center;
     display:flex;
     align-items:center;

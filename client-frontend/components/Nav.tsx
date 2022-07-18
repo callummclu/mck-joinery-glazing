@@ -10,13 +10,32 @@ export const Nav = () => {
                 <LeftFixedDiv>
                     <HiMenuAlt2 size={35} color={'white'}/>
                 </LeftFixedDiv>
-                    <LogoDiv/>
-                    <SubLogoDiv/>
+                <LogoDiv/>
+                <SubLogoDiv/>
+                <RightFixedItems>
+                    <p>About Us</p>
+                    <p>Contact Us</p>
+                    <p>Gallery</p>
+                </RightFixedItems>
             </NavBarStyled>
         </>
     )
 }
 
+const RightFixedItems = styled.div`
+    color:white;
+    position:absolute;
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    right: 40px;
+    font-size:14px;
+    height:75px;
+
+    @media screen and (max-width: 767px){
+        display:none;
+    }
+`
 
 const NavBarStyled = styled.div`
     background:#354B8C;
@@ -53,7 +72,7 @@ const SubLogoDiv = styled.div`
     background-repeat: no-repeat;
     background-position: center;
 
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 767px){
         display:none;
     }
 

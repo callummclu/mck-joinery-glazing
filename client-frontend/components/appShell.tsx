@@ -13,4 +13,6 @@ export const AppShell = (props:any) => {
 }
 
 const AppShellContainer = styled.div`
+    width:100%;
+
 `
