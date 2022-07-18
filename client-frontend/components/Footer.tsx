@@ -8,7 +8,7 @@ export const Footer = (props:MenuItems) => {
                 <div className="grid">
                     <FooterItem className="sitemap">
                         <h1>Sitemap</h1>
-                        {props.items.map((e:any)=><p>{e}</p>)}
+                        {props.items.map((e:any)=><p key={e}>{e}</p>)}
                     </FooterItem>
                     <FooterItem className="contact">
                         <h1>Contact Us</h1>

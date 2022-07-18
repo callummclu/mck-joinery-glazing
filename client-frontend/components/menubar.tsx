@@ -8,7 +8,7 @@ export interface MenuItems{
 export const MenuBar = (props:MenuItems) => {
     return (
         <MenuDiv>
-            {props.items.map((e:any)=><div><p key={e}>{e}</p><IoIosArrowDown/></div>)}
+            {props.items.map((e:any)=><div key={e}><p key={`${e}`}>{e}</p><IoIosArrowDown key={e}/></div>)}
         </MenuDiv>
     )
 }
