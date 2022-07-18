@@ -8,7 +8,7 @@ export interface ImageShowcaseObj{
 
 export const ImageShowcase = (props:ImageShowcaseObj) => {
     return (
-        <div style={{display:"flex","justifyContent":"center"}}>
+        <div style={{display:"flex","alignItems":"center","justifyContent":"center"}}>
             <CenterDiv>
                 <ImageDiv>
                     <ImageContainerBig style={{backgroundImage: `url("${props.large}")` }}/>
@@ -23,6 +23,7 @@ export const ImageShowcase = (props:ImageShowcaseObj) => {
 const CenterDiv = styled.div`
     display:flex;
     align-items:center;
+    justify-content:center;
     width: 100%;
     max-width:1600px;
 `
@@ -42,8 +43,9 @@ const ImageDiv = styled.div`
 
     @media screen and (max-width: 1100px){
         height:auto;
-
-        grid-template-columns: 1fr;
+        grid-column-gap: 0px !important;
+        width:100%;
+        grid-template-columns: 1fr !important;
         grid-template-rows: repeat(3, 1fr);
         grid-template-areas: "large"
                              "top"
@@ -62,7 +64,7 @@ const ImageContainerBig = styled.div`
     
     @media screen and (max-width: 1100px){
         max-height: 100000px;
-        width: calc(100vw - 140px);
+        width: calc(100%);
         height: calc(calc(calc(100vw - 140px) * 9) / 16);
     }
 `
@@ -75,7 +77,7 @@ const ImageContainerSmall = styled.div`
 
     @media screen and (max-width: 1100px){
         max-height: 100000px;
-        width: calc(100vw - 140px);
+        width: calc(100%);
         height: calc(calc(calc(100vw - 140px) * 9) / 16);
     }
 
