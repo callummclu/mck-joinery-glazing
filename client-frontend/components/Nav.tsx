@@ -2,14 +2,23 @@ import styled from "styled-components"
 import MCKLogoBW from '../public/MCK.png'
 import JoineryGlazing from '../public/Joinery|Glazing.png'
 import {HiMenuAlt2} from 'react-icons/hi'
+import { useEffect, useState } from "react"
 
 export const Nav = () => {
+    
+    const [menuToggle, setMenuToggle] = useState(false);
+
     return(
         <>
             <NavBarStyled>
                 <LeftFixedDiv>
-                    <HiMenuAlt2 size={35} color={'white'}/>
+                    <HiMenuAlt2 size={35} color={'white'} onClick={()=>setMenuToggle(!menuToggle)}/>
                 </LeftFixedDiv>
+                {menuToggle && <DropDownMenu>
+                    <p>About Us</p>
+                    <p>Contact Us</p>
+                    <p>Gallery</p>
+                </DropDownMenu>}
                 <LogoDiv/>
                 <SubLogoDiv/>
                 <RightFixedItems>
@@ -21,6 +30,22 @@ export const Nav = () => {
         </>
     )
 }
+
+const DropDownMenu = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    position:absolute;
+    width:100%;
+    top:75px;
+    background:#354B8C;
+    color:white;
+
+    @media screen and (min-width: 767px){
+        display:none;
+    }
+`
 
 const RightFixedItems = styled.div`
     color:white;
