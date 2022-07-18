@@ -2,31 +2,76 @@ import styled from "styled-components"
 import MCKLogoBW from '../public/MCK.png'
 import JoineryGlazing from '../public/Joinery|Glazing.png'
 import {HiMenuAlt2} from 'react-icons/hi'
+import { useEffect, useState } from "react"
 
 export const Nav = () => {
+    
+    const [menuToggle, setMenuToggle] = useState(false);
+
     return(
         <>
             <NavBarStyled>
                 <LeftFixedDiv>
-                    <HiMenuAlt2 size={35} color={'white'}/>
+                    <HiMenuAlt2 size={35} color={'white'} onClick={()=>setMenuToggle(!menuToggle)}/>
                 </LeftFixedDiv>
-                
+                {menuToggle && <DropDownMenu>
+                    <p>About Us</p>
+                    <p>Contact Us</p>
+                    <p>Gallery</p>
+                </DropDownMenu>}
                 <LogoDiv/>
                 <SubLogoDiv/>
+                <RightFixedItems>
+                    <p>About Us</p>
+                    <p>Contact Us</p>
+                    <p>Gallery</p>
+                </RightFixedItems>
             </NavBarStyled>
         </>
     )
 }
 
+const DropDownMenu = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    position:absolute;
+    width:100%;
+    top:75px;
+    background:#354B8C;
+    color:white;
+
+    @media screen and (min-width: 767px){
+        display:none;
+    }
+`
+
+const RightFixedItems = styled.div`
+    color:white;
+    position:absolute;
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    right: 40px;
+    font-size:14px;
+    height:75px;
+
+    @media screen and (max-width: 767px){
+        display:none;
+    }
+`
 
 const NavBarStyled = styled.div`
-    background:rgb(60,60,60);
+    background:#354B8C;
     width:100%;
     display:flex;
     height:75px;
     justify-content:center;
 
     @media screen and (min-width: 768px){
+        width: calc(100% - 40px);
+        padding-left: 40px;
         justify-content: flex-start;
     }
 
@@ -52,7 +97,7 @@ const SubLogoDiv = styled.div`
     background-repeat: no-repeat;
     background-position: center;
 
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 767px){
         display:none;
     }
 
