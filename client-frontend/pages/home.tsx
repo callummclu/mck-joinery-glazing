@@ -30,14 +30,14 @@ const Home: NextPage = () => {
     const TrustpilotWidget = () => {
         return(
             <div className="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="62d6dfaead4cf99707edd7ad" data-style-height="24px" data-style-width="100%" data-theme="light" data-without-reviews-preferred-string-id="2">
-                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app" target="_blank" rel="noopener">Trustpilot</a>
+                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app">Trustpilot</a>
             </div>
         )
     }
 
     return (
         <>
-        <Script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
+        <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
         </Script>
         <AppShell>
             <Banner trustPilot={<TrustpilotWidget/>}/>
