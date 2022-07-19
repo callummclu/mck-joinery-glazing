@@ -1,15 +1,45 @@
 import type { NextPage } from 'next'
-import styled from "styled-components"
-import {TbBrandGithub} from 'react-icons/tb'
-import styles from '../styles/Home.module.css'
 import Head from 'next/head'
+import Script from 'next/script'
+import styled from 'styled-components'
+import { AppShell } from '../components/appShell'
+import { Banner } from '../components/Banner'
+import { CardContainer } from '../components/cardContainer'
+import Contact from '../components/contact'
+import { Footer } from '../components/Footer'
+import { GrayContainer } from '../components/grayContainer'
+import { ImageShowcase, ImageShowcaseObj } from '../components/imageShowcase'
+import { MenuBar, MenuItems } from '../components/menubar'
+
 
 const Home: NextPage = () => {
-  
-  return(
-    <>
-      <Head>
-                  {/* Global Site Tag (gtag.js) - Google Analytics */}
+
+    const menuItems:MenuItems = {
+        items: ["Joinery","Glazing","Fencing","Extensions","More..."]
+    }
+
+    const showcaseImages: ImageShowcaseObj = {
+        large:"1",
+        top:"2",
+        bottom:"3"
+    }
+
+    const aboutUsText = "dwa vdw auidwabihdwa yvdw iahod wnauibidwandwaio duwabdwna idwajipo dwbaiudwai gudwjaiodwaubiydwauv wadjiod vuyd bausyd wayv awdiodbuwa ydwa vua"
+
+
+    const TrustpilotWidget = () => {
+        return(
+            <div className="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="62d6dfaead4cf99707edd7ad" data-style-height="24px" data-style-width="100%" data-theme="light" data-without-reviews-preferred-string-id="2">
+                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app">Trustpilot</a>
+            </div>
+        )
+    }
+
+    return (
+        <>
+        <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
+        </Script>
+        <Head>
               <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -28,49 +58,40 @@ const Home: NextPage = () => {
               />
               <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
       </Head>
-      <div className={styles.pageUnderConstructionContainer}>
-          <InfoDiv className={styles.revCamo}>
-              <h1>MCK Joinery Glazing</h1>
-              <p>Site is currently under construction come back soon</p>
-          </InfoDiv>
-          <SiteCreatorDiv className={styles.revCamo}>
-              <p>Created by Callum Mcluskey</p>
-              <TbBrandGithub onClick={_=>window.location.replace('http://www.github.com/callummclu')}/>
-          </SiteCreatorDiv>
-      </div>
-    </>
+        <AppShell>
+            <Banner trustPilot={<TrustpilotWidget/>}/>
+            <GrayContainer>
+                <MenuBar {...menuItems}/>
+                <ImageShowcase {...showcaseImages}/>
+                <CenteredTextDiv id="About-Us">
+                    <h1>About Us</h1>
+                    <p>{aboutUsText}</p>
+                </CenteredTextDiv>
+                <CardContainer/>
+                <CenteredTextDiv id="Contact-Us">
+                    <h1>Contact Us</h1>
+                    <p>{aboutUsText}</p>
+                </CenteredTextDiv>
+                <Contact/>
+            </GrayContainer>
+            <Footer {...menuItems}/>
+        </AppShell>
+        </>
     )
 }
 
-const InfoDiv = styled.div`
-  max-width:90%;
-  padding-left:50px;
-  padding-right:50px;
-  width:300px;
-  & h1, p {
-    color:white;
+const CenteredTextDiv = styled.div`
+    display:flex;
     
-  }
-`
-
-const SiteCreatorDiv = styled.div`
-  position:fixed;
-  color:white;
-  right:0;
-  bottom:0;
-  padding-right:20px;
-  padding-left:20px;
-  padding-top:2.5px;
-  padding-bottom:2.5px;
-  display:flex;
-  align-items:center;
-  &>p{
-    margin:0;
-    padding-right: 10px;
-  }
-  &>svg:hover{
-    cursor:pointer;
-  }
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding-bottom:50px;
+    & p{ 
+        width:40%;
+        min-width: 350px;
+    }
+    
 `
 
 export default Home

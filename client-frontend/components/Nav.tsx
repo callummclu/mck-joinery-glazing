@@ -32,8 +32,8 @@ export const Nav = () => {
                 </RightFixedItems>
             </NavBarStyled>
             <NavUnder>
-                    <p>phone number</p>
-                    <p>email address</p>
+                    <p>‭07857 073653‬</p>
+                    <p>mckjoinery.glazing@gmail.com</p>
             </NavUnder>
         </>
     )
@@ -42,11 +42,18 @@ export const Nav = () => {
 const NavUnder = styled.div`
     width:100%;
     height:30px;
-    background:#cab473;
+    color:white;
+    background:#2a3c70;
     display:flex;
-    gap:30px;
     align-items:center;
-    justify-content:center;
+    justify-content:space-around;
+    @media screen and (max-width: 768px){
+        height:60px;
+        flex-direction:column;
+        & *{
+            margin:0;
+        }
+    }
 `
 
 const DropDownMenu = styled.div`
