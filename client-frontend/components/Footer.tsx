@@ -56,7 +56,13 @@ const FooterItem = styled.div`
         text-align:center;
         padding-top:10px;
         padding-bottom:10px;
-        height:300px;
+        height:200px;
+
+        &.map{
+            & div{
+                height:200px;
+            } 
+        }
     }
 `
 
@@ -67,6 +73,18 @@ const FooterGrid = styled.div`
     
     align-items:center;
     justify-content:center;
+
+    @media screen and (max-width: 1000px){
+
+        & h1{
+            font-size: 22px;
+        }
+
+        & p {
+            font-size: 13px;
+        }
+
+    }
 
     &>div.grid{
         width:100%;

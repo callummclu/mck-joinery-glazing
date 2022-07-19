@@ -31,9 +31,23 @@ export const Nav = () => {
                     <p><a onClick={() => router.push('/gallery')}>Gallery</a></p>
                 </RightFixedItems>
             </NavBarStyled>
+            <NavUnder>
+                    <p>phone number</p>
+                    <p>email address</p>
+            </NavUnder>
         </>
     )
 }
+
+const NavUnder = styled.div`
+    width:100%;
+    height:30px;
+    background:#cab473;
+    display:flex;
+    gap:30px;
+    align-items:center;
+    justify-content:center;
+`
 
 const DropDownMenu = styled.div`
     display:flex;
