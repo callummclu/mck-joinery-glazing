@@ -1,12 +1,12 @@
 import styled from "styled-components"
 
-export const Banner = () => {
+export const Banner = ({trustPilot}:any) => {
     return (
         <BannerDiv>
             <h1>MCK JOINERY GLAZING</h1>
             <p>Quality work that speaks for itself.</p>
-            <div>
-                <a>trustpilot div</a>
+            <div className="trust-pilot">
+                {trustPilot}
             </div>
         </BannerDiv>
     )
@@ -32,5 +32,13 @@ const BannerDiv = styled.div`
         margin:0;
         margin-bottom: 50px;
     }   
+
+    & .trust-pilot{
+        width:100%;
+    }
+
+    & .trust-pilot a{
+        color:black !important;
+    }
 
 `
