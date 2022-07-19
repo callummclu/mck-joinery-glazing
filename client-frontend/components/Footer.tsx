@@ -54,13 +54,16 @@ const FooterItem = styled.div`
 
     @media screen and (max-width: 1000px){
         text-align:center;
+        padding-top:10px;
+        padding-bottom:10px;
+        height:300px;
     }
 `
 
 const FooterGrid = styled.div`
     width:100%;
     display:flex;
-    padding-bottom:30px;
+    padding-bottom:100px;
     
     align-items:center;
     justify-content:center;

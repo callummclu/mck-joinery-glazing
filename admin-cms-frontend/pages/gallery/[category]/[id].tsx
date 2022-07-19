@@ -7,6 +7,7 @@ import { convertToBase64 } from "../../../helpers/base64"
 import { fetcher } from "../../../helpers/fetchhelper"
 import styled from 'styled-components'
 import { Nav } from "../../../components/navbar"
+import { withPageAuthRequired } from "@auth0/nextjs-auth0"
 
 export const EditSingleGallery: NextPage = (props:any) => {
 
@@ -159,4 +160,4 @@ const StyledImage = styled.div`
 	}
 `
 
-export default EditSingleGallery
+export default withPageAuthRequired(EditSingleGallery)

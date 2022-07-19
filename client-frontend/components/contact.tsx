@@ -36,7 +36,9 @@ export const Contact = () => {
 const ContactForm = styled.form`
     width:400px;
     padding:20px;
-
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     &>*{
         transition-duration:0.15s;
         width:calc(100% - 40px);

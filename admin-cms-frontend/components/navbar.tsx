@@ -1,19 +1,12 @@
-import { AppShell, Navbar, Header, Title, Text, Group, MediaQuery, Burger,Button } from '@mantine/core';
+import { AppShell, Navbar, Header, Title, Text, Group, MediaQuery, Burger,Button, Avatar } from '@mantine/core';
 import React, {useState} from 'react'
-// import '../styles/adminNav.css'
 import { BsImage } from 'react-icons/bs'
-
-// const Logout = () => {
-//   const { logout } = useAuth0();
-
-//   return <p style={{cursor:"pointer"}} onClick={()=>logout()}>logout</p>
-// }
-
-//<Logout/>
+import { useUser } from '@auth0/nextjs-auth0'
 
 export const Nav = ({children}:any) => {
 
   const [opened, setOpened] = useState(false);
+  const { user, error, isLoading } = useUser()
 
 	return (
 	
@@ -28,10 +21,11 @@ export const Nav = ({children}:any) => {
 		
 				header={
 					<Header height={65} p="xs">
-					<Group>
-						<Title style={{cursor:"pointer"}} onClick={()=>window.location.href = window.location.origin}>MCKAP</Title>
-						<Text>MCK Admin Portal</Text>
-					</Group>
+						<Group>
+							<Title style={{cursor:"pointer"}} onClick={()=>window.location.href = window.location.origin}>MCKAP</Title>
+							<Text>MCK Admin Portal</Text>
+							<Avatar src={user?.picture} alt="user"/>
+						</Group>
 					</Header>
 				}
 			>

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { fetcher } from '../../../helpers/fetchhelper';
 import { Nav } from '../../../components/navbar';
-
+import { withPageAuthRequired } from "@auth0/nextjs-auth0"
 
 export const EditCategory: NextPage = () => {
 
@@ -71,4 +71,4 @@ export const EditCategory: NextPage = () => {
     )
 }
 
-export default EditCategory
+export default withPageAuthRequired(EditCategory)
