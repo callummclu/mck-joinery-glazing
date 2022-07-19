@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { MenuItems } from "./menubar"
+import { BsFacebook } from 'react-icons/bs'
 
 export const Footer = (props:MenuItems) => {
     return (
@@ -12,9 +13,9 @@ export const Footer = (props:MenuItems) => {
                     </FooterItem>
                     <FooterItem className="contact">
                         <h1>Contact Us</h1>
-                        <p>phone number</p>
-                        <p>email address</p>
-                        <p>socials</p>
+                        <p>07857 073653</p>
+                        <p>mckjoinery.glazing@gmail.com</p>
+                        <p><BsFacebook/></p>
                         <br/>
                         <p>created by callum mcluskey</p>
                     </FooterItem>
@@ -45,7 +46,7 @@ const FooterItem = styled.div`
         grid-area:map;
         & div{
             max-width:600px;
-            background:gray;
+            background:rgba(0,0,0,0.2);
             width:100%;
             height:350px;
         }
@@ -107,17 +108,20 @@ const FooterGrid = styled.div`
 const FooterContainer = styled.div`
     width:100%;
     height: auto;
-    background: #D9D9D9;
+    background: #354B8C;
+    color:white;
     position:relative;
 `
 
 const FooterBar = styled.div`
     width:100%;
+    background:#2a3c70;
+    color:white;
     height: 30px;
     position:absolute;
     left:0;
     bottom:0;
-    background:#C0C0C0;
     text-align:center;
     line-height:30px;
+    font-size: 10px;
 `
