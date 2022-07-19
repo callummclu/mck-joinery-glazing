@@ -4,13 +4,10 @@ import { NextPage } from 'next'
 import useSWR from 'swr'
 import { fetcher } from '../../helpers/fetchhelper'
 import { Nav } from '../../components/navbar'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
-export const GalleryCategories: NextPage = () => {
-
+const GalleryCategories: NextPage = () => {
     const [categories,setCategories] = useState<any[]>()
-
-
-
     let {data,error}:any =  useSWR("https://mck-joinery-glazing-backend.herokuapp.com/category",fetcher)
 	const removeCategory = (id:string) => {
 	 	fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category/${id}`,{
@@ -53,4 +50,4 @@ export const GalleryCategories: NextPage = () => {
 	)
 }
 
-export default GalleryCategories
+export default withPageAuthRequired(GalleryCategories)

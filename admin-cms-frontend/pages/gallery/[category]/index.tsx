@@ -6,6 +6,8 @@ import { fetcher } from '../../../helpers/fetchhelper';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Nav } from '../../../components/navbar';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
+
 
 export const GalleryCategories: NextPage = () => {
 
@@ -52,4 +54,4 @@ export const GalleryCategories: NextPage = () => {
     )
 }
 
-export default GalleryCategories
+export default withPageAuthRequired(GalleryCategories)
