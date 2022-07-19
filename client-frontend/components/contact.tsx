@@ -6,6 +6,7 @@ export const Contact = () => {
     const nameRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
     const queryRef = useRef<HTMLTextAreaElement>(null)
+    const phoneRef = useRef<HTMLInputElement>(null)
 
     const contactSubmit = (e:any) => {
         e.preventDefault()
@@ -23,6 +24,9 @@ export const Contact = () => {
 
                     <label htmlFor='contact-email'>Email</label>
                     <FormInput id='contact-email' type="email" ref={emailRef} required/>
+
+                    <label htmlFor='contact-email'>Phone</label>
+                    <FormInput id='contact-phone' type="phone" ref={phoneRef} required/>
 
                     <label htmlFor='contact-question'>Question</label>
                     <FormTextarea id='contact-question' ref={queryRef} required data-attr={1}/>
