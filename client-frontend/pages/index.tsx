@@ -26,6 +26,7 @@ const Home: NextPage = () => {
               `,
                 }}
               />
+              <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
       </Head>
       <div className={styles.pageUnderConstructionContainer}>
           <InfoDiv className={styles.revCamo}>
