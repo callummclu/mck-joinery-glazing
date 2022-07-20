@@ -18,13 +18,13 @@ public class GalleryController {
         this.galleryRepository = galleryRepository;
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery",method= RequestMethod.GET,produces= MediaType.APPLICATION_JSON_VALUE)
     public List<GalleryItem> Gallery(){
         return galleryRepository.findAll();
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery/all/{category}",method= RequestMethod.GET,produces= MediaType.APPLICATION_JSON_VALUE)
     public List<GalleryItem> Gallery(@PathVariable String category){
         return galleryRepository.findByCategory(category);
@@ -32,19 +32,19 @@ public class GalleryController {
 
 
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery/{category}/add",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public void AddGallery(@RequestBody GalleryItem item) throws JsonProcessingException {
         galleryRepository.save(item);
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery/{category}/{id}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public GalleryItem GetSingleItem(@PathVariable String category, @PathVariable String id) {
         return galleryRepository.findByIdAndCategory(category,id);
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery/{category}/{id}",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public GalleryItem ChangeSingleItem(@PathVariable String category, @PathVariable String id,@RequestBody GalleryItem item) {
 
@@ -54,7 +54,7 @@ public class GalleryController {
         return _item;
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://admin.localhost:3000"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery/{category}/{id}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
     public void DeleteSingleItem(@PathVariable String id){
         galleryRepository.delete(galleryRepository.findById(id).orElse(null));
