@@ -11,11 +11,19 @@ import { GrayContainer } from '../components/grayContainer'
 import { ImageShowcase, ImageShowcaseObj } from '../components/imageShowcase'
 import { MenuBar, MenuItems } from '../components/menubar'
 
+export async function getServerSideProps() {
+    const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
+    const categories = await res.json()
 
-const Home: NextPage = () => {
+    return { props: { categories }}
+}
+
+const Home: NextPage = ({ categories }:any) => {
+
+    console.log(categories)
 
     const menuItems:MenuItems = {
-        items: ["Joinery","Glazing","Fencing","Extensions","More..."]
+        items: [...categories.map((e:any) => e.type),"more..."]
     }
 
     const showcaseImages: ImageShowcaseObj = {

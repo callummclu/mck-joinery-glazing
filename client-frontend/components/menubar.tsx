@@ -11,7 +11,7 @@ export const MenuBar = (props:MenuItems) => {
 
     return (
         <MenuDiv>
-            {props.items.map((e:any)=><div key={e}><p key={`${e}`}>{e}</p><IoIosArrowDown key={e}/></div>)}
+            {props.items.map((e:any)=><div key={e}><p key={`${e+"-menubar"}`}>{e}</p><IoIosArrowDown key={e}/></div>)}
             <Button onClick={()=>router.push("gallery")}>View Gallery</Button>
         </MenuDiv>
     )

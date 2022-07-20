@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import styled from "styled-components"
 import {TbBrandGithub} from 'react-icons/tb'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
