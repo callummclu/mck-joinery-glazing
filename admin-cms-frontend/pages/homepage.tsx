@@ -31,7 +31,7 @@ export const Homepage: NextPage = ({ homePage }:any) => {
 					my="xs" 
 					variant="dashed"
 				/>
-                <h2>Title subtext's</h2>
+                <h2>Title subtexts</h2>
 				<TextInput label="Under Title Text" defaultValue={homePage.splashText}/>
                 <TextInput label="About Us Text" defaultValue={homePage.aboutUsText}/>
                 <TextInput label="Contact Us Text" defaultValue={homePage.contactUsText}/>
