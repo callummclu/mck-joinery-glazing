@@ -2,10 +2,16 @@ import styled from "styled-components"
 import { Nav } from "./Nav"
 import { ScrollToTop } from "./ScrollToTop"
 
-export const AppShell = (props:any) => {
+export interface ContactDetails{
+    phone:string;
+    email:string;
+    children?: any;
+}
+
+export const AppShell = (props:ContactDetails) => {
     return(
         <AppShellContainer>
-            <Nav/>
+            <Nav phone={props.phone} email={props.email}/>
             {props.children}
             <ScrollToTop/>
         </AppShellContainer>
