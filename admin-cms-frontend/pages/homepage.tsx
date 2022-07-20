@@ -106,7 +106,7 @@ export const Homepage: NextPage = ({ homePage }:any) => {
 
                
 				
-				<Button my="md" mr="md">Save</Button>
+				<Button onClick={SaveItem} my="md" mr="md">Save</Button>
     </Container>
     </Nav>
     </>
