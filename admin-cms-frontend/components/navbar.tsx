@@ -31,7 +31,7 @@ export const Nav = ({children}:any) => {
 								<Menu.Label>Application</Menu.Label>
 								<Menu.Item icon={<FiSettings size={14} />}>Settings</Menu.Item>
 								<Divider />
-								<Menu.Item onClick={()=>router.push("/api/auth/logout")} icon={<BiLogOut size={14} />}>Logout</Menu.Item>
+								<Menu.Item onClick={()=>router.push("/api/auth/logout")} color="red" icon={<BiLogOut size={14} />}>Logout</Menu.Item>
 
 							</Menu>
 						</Group>
