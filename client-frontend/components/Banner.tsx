@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Banner = ({trustPilot}:any) => {
     return (
         <BannerDiv>
-            <h1>MCK JOINERY GLAZING</h1>
+            <h1 translate="no">MCK JOINERY GLAZING</h1>
             <p>Quality work that speaks for itself.</p>
             <div className="trust-pilot">
                 {trustPilot}

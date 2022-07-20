@@ -1,9 +1,13 @@
 import styled from "styled-components"
 import { MenuItems } from "./menubar"
-import { BsFacebook } from 'react-icons/bs'
+import { BsFacebook, BsInstagram } from 'react-icons/bs'
+import { useCallback, useState } from "react";
 
 export const Footer = (props:MenuItems) => {
+
     return (
+        <>        
+
         <FooterContainer>
             <FooterGrid>
                 <div className="grid">
@@ -15,14 +19,9 @@ export const Footer = (props:MenuItems) => {
                         <h1>Contact Us</h1>
                         <p>07857 073653</p>
                         <p>mckjoinery.glazing@gmail.com</p>
-                        <p><BsFacebook/></p>
+                        <p><BsFacebook style={{padding:"5px"}}/><BsInstagram style={{padding:"5px"}}/></p>
                         <br/>
                         <p>created by callum mcluskey</p>
-                    </FooterItem>
-                    <FooterItem className="map">
-                    
-                            <div></div>
-                 
                     </FooterItem>
                 </div>
                 
@@ -31,6 +30,7 @@ export const Footer = (props:MenuItems) => {
             </FooterGrid>
             <FooterBar>Copyright © 2022 MCK Joinery Glazing</FooterBar>
         </FooterContainer>
+    </>
     )
 }
 
@@ -38,19 +38,6 @@ const FooterItem = styled.div`
     width: calc(100% - 80px);
     padding:40px;
     &.sitemap{grid-area:sitemap;padding-bottom:10px;}
-    &.map{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        
-        grid-area:map;
-        & div{
-            max-width:600px;
-            background:rgba(0,0,0,0.2);
-            width:100%;
-            height:350px;
-        }
-    }
     &.contact{grid-area:contact;padding-bottom:10px;}
 
     @media screen and (max-width: 1000px){
@@ -58,19 +45,13 @@ const FooterItem = styled.div`
         padding-top:10px;
         padding-bottom:10px;
         height:200px;
-
-        &.map{
-            & div{
-                height:200px;
-            } 
-        }
     }
 `
 
 const FooterGrid = styled.div`
     width:100%;
     display:flex;
-    padding-bottom:100px;
+    padding-bottom:60px;
     
     align-items:center;
     justify-content:center;
@@ -90,16 +71,16 @@ const FooterGrid = styled.div`
     &>div.grid{
         width:100%;
         display:grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(1, 1fr);
-        grid-template-areas: "sitemap contact map map";
+        grid-template-areas: "sitemap contact";
         grid-column-gap: 20px;
         grid-row-gap: 20px;
 
         @media screen and (max-width: 1000px){
             grid-template-columns: repeat(1, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            grid-template-areas: "sitemap" "contact" "map";
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-areas: "sitemap" "contact";
             grid-gap:0px;
         }
     }
