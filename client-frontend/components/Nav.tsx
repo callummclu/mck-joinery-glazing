@@ -4,8 +4,9 @@ import JoineryGlazing from '../public/Joinery|Glazing.png'
 import {HiMenuAlt2} from 'react-icons/hi'
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import { ContactDetails } from "./appShell"
 
-export const Nav = () => {
+export const Nav = (props:ContactDetails) => {
     
     const [menuToggle, setMenuToggle] = useState(false);
 
@@ -32,8 +33,8 @@ export const Nav = () => {
                 </RightFixedItems>
             </NavBarStyled>
             <NavUnder>
-                    <p>‭07857 073653‬</p>
-                    <p>mckjoinery.glazing@gmail.com</p>
+                    <p>{props.phone}</p>
+                    <p>{props.email}</p>
             </NavUnder>
         </>
     )

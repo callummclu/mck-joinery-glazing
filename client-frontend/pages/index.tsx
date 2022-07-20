@@ -2,30 +2,81 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Script from 'next/script'
 import styled from 'styled-components'
-import { AppShell } from '../components/appShell'
+import { AppShell, ContactDetails } from '../components/appShell'
 import { Banner } from '../components/Banner'
 import { CardContainer } from '../components/cardContainer'
 import Contact from '../components/contact'
-import { Footer } from '../components/Footer'
+import { Footer, FooterProps } from '../components/Footer'
 import { GrayContainer } from '../components/grayContainer'
 import { ImageShowcase, ImageShowcaseObj } from '../components/imageShowcase'
 import { MenuBar, MenuItems } from '../components/menubar'
 
+export async function getServerSideProps() {
+    const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
+    const categories = await res.json()
 
-const Home: NextPage = () => {
+    const homeRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/homepage`)
+    const homePageResult = await homeRes.json()
+    const homePage = homePageResult[0]
+
+    const contactRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/contact`)
+    const contactResult = await contactRes.json()
+    const contact = contactResult[0]
+
+    return { props: { categories, homePage, contact }}
+}
+
+export interface Homepage{
+    splashText:string;
+    aboutUsText:string;
+    contactUsText:string;
+    cardTitles:string[];
+    cardTexts:string[];
+    showcaseImages:string[]
+}
+
+export interface Contact{
+    number:string;
+    email:string;
+}
+
+export interface HomepageProps{
+    categories:any;
+    homePage: Homepage;
+    contact: Contact;
+}
+
+const Home: NextPage = ({ categories, homePage, contact }:any) => {
+
+    console.log(contact)
 
     const menuItems:MenuItems = {
-        items: ["Joinery","Glazing","Fencing","Extensions","More..."]
+        items: [...categories.map((e:any) => e.type),"more..."]
     }
 
     const showcaseImages: ImageShowcaseObj = {
-        large:"1",
-        top:"2",
-        bottom:"3"
+        large:homePage.showcaseImages[0],
+        top:homePage.showcaseImages[1],
+        bottom:homePage.showcaseImages[2]
     }
 
-    const aboutUsText = "dwa vdw auidwabihdwa yvdw iahod wnauibidwandwaio duwabdwna idwajipo dwbaiudwai gudwjaiodwaubiydwauv wadjiod vuyd bausyd wayv awdiodbuwa ydwa vua"
+    const contactDetails: ContactDetails = {
+        phone: contact.number,
+        email: contact.email
+    }
 
+    const footerItems:FooterProps = {
+        ...menuItems,
+        ...contactDetails
+    }
+
+    const aboutUsText = homePage.aboutUsText;
+    const contactUsText = homePage.contactUsText;
+
+    const cardDetails = {
+        cardTitles:homePage.cardTitles,
+        cardTexts:homePage.cardTexts
+    }
 
     const TrustpilotWidget = () => {
         return(
@@ -58,7 +109,7 @@ const Home: NextPage = () => {
               />
               <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
       </Head>
-        <AppShell>
+        <AppShell {...contactDetails}>
             <Banner trustPilot={<TrustpilotWidget/>}/>
             <GrayContainer>
                 <MenuBar {...menuItems}/>
@@ -67,14 +118,14 @@ const Home: NextPage = () => {
                     <h1>About Us</h1>
                     <p>{aboutUsText}</p>
                 </CenteredTextDiv>
-                <CardContainer/>
+                <CardContainer {...cardDetails}/>
                 <CenteredTextDiv id="Contact-Us">
                     <h1>Contact Us</h1>
-                    <p>{aboutUsText}</p>
+                    <p>{contactUsText}</p>
                 </CenteredTextDiv>
                 <Contact/>
             </GrayContainer>
-            <Footer {...menuItems}/>
+            <Footer {...footerItems}/>
         </AppShell>
         </>
     )

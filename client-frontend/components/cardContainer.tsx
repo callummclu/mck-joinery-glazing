@@ -2,24 +2,24 @@ import { BsCloud, BsHammer, BsNut } from "react-icons/bs"
 import styled from "styled-components"
 import { Card, CardProps } from "./card"
 
-export const CardContainer = () => {
+export const CardContainer = (props:any) => {
 
     const card1:CardProps = {
         icon:<BsCloud size={64}/>,
-        title:"card 1",
-        subtext:"dasdsadw dwad as dw wad sfbua wafuf wb iwafawi"
+        title:props.cardTitles[0],
+        subtext:props.cardTexts[0]
     } 
 
     const card2:CardProps = {
         icon:<BsHammer size={64}/>,
-        title:"card 2",
-        subtext:"dasdsadw dwad as dw wad sfbua wafuf wb iwafawi"
+        title:props.cardTitles[1],
+        subtext:props.cardTexts[1]
     } 
 
     const card3:CardProps = {
         icon:<BsNut size={64}/>,
-        title:"card 3",
-        subtext:"dasdsadw dwad as dw wad sfbua wafuf wb iwafawi"
+        title:props.cardTitles[2],
+        subtext:props.cardTexts[2]
     } 
 
     return(

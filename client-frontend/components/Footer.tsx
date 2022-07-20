@@ -3,7 +3,13 @@ import { MenuItems } from "./menubar"
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import { useCallback, useState } from "react";
 
-export const Footer = (props:MenuItems) => {
+export interface FooterProps{
+    items:string[];
+    phone:string;
+    email:string;
+}
+
+export const Footer = (props:FooterProps) => {
 
     return (
         <>        
@@ -17,8 +23,8 @@ export const Footer = (props:MenuItems) => {
                     </FooterItem>
                     <FooterItem className="contact">
                         <h1>Contact Us</h1>
-                        <p>07857 073653</p>
-                        <p>mckjoinery.glazing@gmail.com</p>
+                        <p>{props.phone}</p>
+                        <p>{props.email}</p>
                         <p><BsFacebook style={{padding:"5px"}}/><BsInstagram style={{padding:"5px"}}/></p>
                         <br/>
                         <p>created by callum mcluskey</p>
