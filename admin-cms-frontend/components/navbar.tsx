@@ -21,10 +21,10 @@ export const Nav = ({children}:any) => {
 		
 				header={
 					<Header height={65} p="xs">
-						<Group>
+						<Group style={{position:"relative"}}>
 							<Title style={{cursor:"pointer"}} onClick={()=>window.location.href = window.location.origin}>MCKAP</Title>
 							<Text>MCK Admin Portal</Text>
-							<Avatar src={user?.picture} alt="user"/>
+							<Avatar style={{position:"absolute",right:"10px"}} src={user?.picture} alt="user"/>
 						</Group>
 					</Header>
 				}
