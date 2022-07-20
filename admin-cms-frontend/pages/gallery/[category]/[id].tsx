@@ -124,16 +124,7 @@ export const EditSingleGallery: NextPage = (props:any) => {
 
 				<TextInput ref={titleRef} label="Title" defaultValue={data?.title} />
 				<Textarea ref={descriptionRef} label="Description" defaultValue={data?.description}/>
-				<Select
-					required
-					onChange={setGalleryItemArea}
-					label="Pick a Parent Post Type"
-					placeholder={data?.galleryItemAreaRef}
-					data={[
-						{ value: 'normalImage', label: 'Normal Image' },
-						{ value: 'beforeAfter', label: 'Before / After Image' }
-					]}
-			    />
+			
 				<Button onClick={saveItem} my="md" mr="md">Save Changes</Button>
 				<Button onClick={()=>window.location.replace(window.location.origin + 'categories/gallery')} my="md" variant="outline">Cancel Changes</Button>
 			</Container>
