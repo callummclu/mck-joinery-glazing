@@ -39,7 +39,7 @@ export const Index: NextPage = () => {
 					Homepage
 			</Button>
 			<Button 
-					onClick={()=>window.location.href = window.location.origin + "/homepage"}
+					onClick={()=>window.location.href = window.location.origin + "/contact"}
 					variant="default" 
 					fullWidth
 					leftIcon={<IoPersonOutline size={16}/>}
