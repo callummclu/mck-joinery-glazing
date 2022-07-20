@@ -61,6 +61,8 @@ const ImageContainerBig = styled.div`
     max-height:600px;
     height:100%;
     background:darkgray;
+    background-size:cover;
+    background-position:center;
     
     @media screen and (max-width: 1100px){
         max-height: 100000px;
@@ -74,6 +76,8 @@ const ImageContainerSmall = styled.div`
     height:100%;
     height:100%;
     background:darkgray;
+    background-size:cover;
+    background-position:center;
 
     @media screen and (max-width: 1100px){
         max-height: 100000px;
