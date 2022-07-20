@@ -4,6 +4,7 @@ import { BsImage } from 'react-icons/bs'
 import { IoHomeOutline, IoPersonOutline } from 'react-icons/io5'
 import { Nav } from '../components/navbar';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { useRef } from 'react';
 
 export async function getServerSideProps() {
     const contactRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/contact`)
@@ -14,6 +15,29 @@ export async function getServerSideProps() {
 }
 
 export const Contact: NextPage = ({contact}:any) => {
+
+	const numberRef = useRef<HTMLInputElement>(null)
+	const emailRef = useRef<HTMLInputElement>(null)
+
+	const SaveItem = ()=>{
+		let number = numberRef
+		let email = emailRef
+
+		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/contact/${contact.id}`,{
+			method:"POST",
+			headers:{
+				'Content-Type': 'application/json'
+			},
+			body:JSON.stringify({
+				number: number!.current!.value,
+				email: email!.current!.value
+			})
+		})
+			.then(async (res:any)=>{
+				window.location.replace(`${window.location.origin}`)
+			})
+	}
+
 	return (
 	<>
   <Nav>
@@ -28,10 +52,10 @@ export const Contact: NextPage = ({contact}:any) => {
 					my="xs" 
 					variant="dashed"
 				/>
-                <TextInput label="Phone Number" defaultValue={contact.number}/>
-                <TextInput label="Email Address" defaultValue={contact.email}/>
+                <TextInput ref={numberRef} label="Phone Number" defaultValue={contact.number}/>
+                <TextInput ref={emailRef} label="Email Address" defaultValue={contact.email}/>
 
-				<Button my="md" mr="md">Save</Button>
+				<Button onClick={SaveItem} my="md" mr="md">Save</Button>
     </Container>
     </Nav>
     </>
