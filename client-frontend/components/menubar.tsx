@@ -1,15 +1,18 @@
 import styled from "styled-components"
 import {IoIosArrowDown} from 'react-icons/io'
+import { useRouter } from "next/router"
 
 export interface MenuItems{
     items:string[]
 }
 
 export const MenuBar = (props:MenuItems) => {
+    const router = useRouter()
+
     return (
         <MenuDiv>
             {props.items.map((e:any)=><div key={e}><p key={`${e}`}>{e}</p><IoIosArrowDown key={e}/></div>)}
-            <Button>View Gallery</Button>
+            <Button onClick={()=>router.push("gallery")}>View Gallery</Button>
         </MenuDiv>
     )
 }
@@ -24,6 +27,7 @@ const Button = styled.button`
     padding-left:25px;
     padding-right:25px;
     font-size:18px;
+    cursor:pointer;
 `
 
 const MenuDiv = styled.div`

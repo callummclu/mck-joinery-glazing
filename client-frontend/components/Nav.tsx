@@ -133,6 +133,7 @@ const LeftFixedDiv = styled.div`
     left:0;
     top:0;
     margin:20px;
+    cursor:pointer;
 
     @media screen and (min-width: 768px){
         display:none;
