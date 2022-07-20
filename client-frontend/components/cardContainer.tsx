@@ -1,7 +1,27 @@
+import { BsCloud, BsHammer, BsNut } from "react-icons/bs"
 import styled from "styled-components"
-import { Card } from "./card"
+import { Card, CardProps } from "./card"
 
 export const CardContainer = () => {
+
+    const card1:CardProps = {
+        icon:<BsCloud size={64}/>,
+        title:"card 1",
+        subtext:"dasdsadw dwad as dw wad sfbua wafuf wb iwafawi"
+    } 
+
+    const card2:CardProps = {
+        icon:<BsHammer size={64}/>,
+        title:"card 2",
+        subtext:"dasdsadw dwad as dw wad sfbua wafuf wb iwafawi"
+    } 
+
+    const card3:CardProps = {
+        icon:<BsNut size={64}/>,
+        title:"card 3",
+        subtext:"dasdsadw dwad as dw wad sfbua wafuf wb iwafawi"
+    } 
+
     return(
         <ContainingDiv>
             <div style={{"overflow": "hidden"}}>
@@ -15,9 +35,9 @@ export const CardContainer = () => {
                 </svg>
 
             <CardHolder>
-                <Card/>
-                <Card/>
-                <Card/>
+                <Card {...card1}/>
+                <Card {...card2}/>
+                <Card {...card3}/>
             </CardHolder>
             
 
