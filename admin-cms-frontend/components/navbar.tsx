@@ -27,7 +27,7 @@ export const Nav = ({children}:any) => {
 						<Group style={{position:"relative"}}>
 							<Title style={{cursor:"pointer"}} onClick={()=>window.location.href = window.location.origin}>MCKAP</Title>
 							<Text>MCK Admin Portal</Text>
-							<Menu control={<Avatar style={{position:"absolute",right:"10px"}} src={user?.picture} alt="user"/>}>
+							<Menu style={{position:"absolute",right:"10px"}} control={<Avatar src={user?.picture} alt="user"/>}>
 								<Menu.Label>Application</Menu.Label>
 								<Menu.Item icon={<FiSettings size={14} />}>Settings</Menu.Item>
 								<Divider />
