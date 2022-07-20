@@ -1,11 +1,13 @@
-import { BsCloud, BsHammer, BsNut } from "react-icons/bs"
+import {  BsHammer, BsNut } from "react-icons/bs"
+import { GrLocation } from "react-icons/gr"
+import { VscPerson } from 'react-icons/vsc'
 import styled from "styled-components"
 import { Card, CardProps } from "./card"
 
 export const CardContainer = (props:any) => {
 
     const card1:CardProps = {
-        icon:<BsCloud size={64}/>,
+        icon:<GrLocation size={64}/>,
         title:props.cardTitles[0],
         subtext:props.cardTexts[0]
     } 
@@ -17,7 +19,7 @@ export const CardContainer = (props:any) => {
     } 
 
     const card3:CardProps = {
-        icon:<BsNut size={64}/>,
+        icon:<VscPerson size={64}/>,
         title:props.cardTitles[2],
         subtext:props.cardTexts[2]
     } 
