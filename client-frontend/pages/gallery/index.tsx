@@ -3,74 +3,83 @@ import styled from "styled-components"
 import {TbBrandGithub} from 'react-icons/tb'
 import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
+import { AppShell } from '../../components/appShell'
+import { Banner } from '../../components/Banner'
+import { GrayContainer } from '../../components/grayContainer'
+import { useRouter } from 'next/router'
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+  const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
+  const categories = await res.json()
+
+  const contactRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/contact`)
+  const contactResult = await contactRes.json()
+  const contact = contactResult[0]
+
+  return { props: { categories, contact }}
+}
+
+const Gallery: NextPage = ({categories, contact}:any) => {
   
+  let router = useRouter()
+
+  const categoriesMapped = categories.map((e:any) => <CategoryDiv key={e.parent+e.type} onClick={()=>router.push(`gallery/${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>)
+
+
   return(
     <>
-      <Head>
-                  {/* Global Site Tag (gtag.js) - Google Analytics */}
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-              />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-                }}
-              />
-              <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
-      </Head>
-      <div className={styles.pageUnderConstructionContainer}>
-          <InfoDiv className={styles.revCamo}>
-              <h1>MCK Joinery Glazing</h1>
-              <p>This page is currently under construction come back soon.</p>
-          </InfoDiv>
-          <SiteCreatorDiv className={styles.revCamo}>
-              <p>Created by Callum Mcluskey</p>
-              <TbBrandGithub onClick={_=>window.location.replace('http://www.github.com/callummclu')}/>
-          </SiteCreatorDiv>
-      </div>
+      <AppShell phone={contact.number} email={contact.email}>
+        <WhiteBanner>
+          <h1>Gallery</h1>
+          <p>Choose a category below.</p>
+        </WhiteBanner>
+        
+        <GrayContainer>
+          <FiltersDiv>
+            <CategoryContainer>
+              {categoriesMapped}
+            </CategoryContainer>
+          </FiltersDiv>
+        </GrayContainer>
+      </AppShell>
     </>
     )
 }
 
-const InfoDiv = styled.div`
-  max-width:90%;
-  padding-left:50px;
-  padding-right:50px;
-  width:300px;
-  & h1, p {
-    color:white;
-    
-  }
-`
-
-const SiteCreatorDiv = styled.div`
-  position:fixed;
-  color:white;
-  right:0;
-  bottom:0;
-  padding-right:20px;
-  padding-left:20px;
-  padding-top:2.5px;
-  padding-bottom:2.5px;
+export const FiltersDiv = styled.div`
   display:flex;
   align-items:center;
-  &>p{
-    margin:0;
-    padding-right: 10px;
-  }
-  &>svg:hover{
-    cursor:pointer;
-  }
+  justify-content:center;
 `
 
-export default Home
+export const CategoryContainer = styled.div`
+  max-width: 800px;
+  width:80%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+
+`
+
+export const CategoryDiv = styled.span`
+  background:lightgray;
+  margin:10px;
+  padding:20px;
+  padding-top:12.5px;
+  padding-bottom:12.5px;
+  border-radius:25px;
+  cursor:pointer
+  `
+
+export const WhiteBanner = styled.div`
+  height:350px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  flex-direction:column;
+`
+
+export default Gallery
