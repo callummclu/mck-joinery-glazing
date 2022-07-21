@@ -3,12 +3,13 @@ import styled from "styled-components"
 import {TbBrandGithub} from 'react-icons/tb'
 import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
-import { AppShell } from '../../components/appShell'
-import { Banner } from '../../components/Banner'
-import { GrayContainer } from '../../components/grayContainer'
 import { useRouter } from 'next/router'
+import { AppShell } from '../../../components/appShell'
+import { CategoryContainer, CategoryDiv, FiltersDiv, WhiteBanner } from '..'
+import { GrayContainer } from '../../../components/grayContainer'
 
 export async function getServerSideProps() {
+
   const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
   const categories = await res.json()
 
@@ -19,11 +20,13 @@ export async function getServerSideProps() {
   return { props: { categories, contact }}
 }
 
-const Gallery: NextPage = ({categories, contact}:any) => {
+const Glazing: NextPage = ({ categories,contact}:any) => {
   
-  let router = useRouter()
+    let router = useRouter()
 
-  const categoriesMapped = categories.map((e:any) => <CategoryDiv onClick={()=>router.push(`gallery/${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>)
+    const categoriesMapped = categories.filter((cat:any)=>cat.parent === "Glazing").map((e:any) => <CategoryDiv onClick={()=>router.push(`gallery/${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>)
+  
+  
 
 
   return(
@@ -46,40 +49,4 @@ const Gallery: NextPage = ({categories, contact}:any) => {
     )
 }
 
-export const FiltersDiv = styled.div`
-  display:flex;
-  align-items:center;
-  justify-content:center;
-`
-
-export const CategoryContainer = styled.div`
-  max-width: 800px;
-  width:80%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-
-`
-
-export const CategoryDiv = styled.span`
-  background:lightgray;
-  margin:10px;
-  padding:20px;
-  padding-top:12.5px;
-  padding-bottom:12.5px;
-  border-radius:25px;
-  cursor:pointer
-  `
-
-export const WhiteBanner = styled.div`
-  height:350px;
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  flex-direction:column;
-`
-
-export default Gallery
+export default Glazing

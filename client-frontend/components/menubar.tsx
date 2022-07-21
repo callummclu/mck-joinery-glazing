@@ -2,8 +2,13 @@ import styled from "styled-components"
 import {IoIosArrowDown} from 'react-icons/io'
 import { useRouter } from "next/router"
 
+export interface MenuItem{
+    name:string;
+    redirect:string;
+}
+
 export interface MenuItems{
-    items:string[]
+    items:MenuItem[]
 }
 
 export const MenuBar = (props:MenuItems) => {
@@ -11,7 +16,7 @@ export const MenuBar = (props:MenuItems) => {
 
     return (
         <MenuDiv>
-            {props.items.map((e:any)=><div key={e}><p key={`${e+"-menubar"}`}>{e}</p><IoIosArrowDown key={e}/></div>)}
+            {props.items.map((e:any)=><div key={e.name}><p key={`${e.name+"-menubar"}`}><a href={e.redirect}>{e.name}</a></p><IoIosArrowDown key={e.name}/></div>)}
             <Button onClick={()=>router.push("gallery")}>View Gallery</Button>
         </MenuDiv>
     )
@@ -31,6 +36,11 @@ const Button = styled.button`
 `
 
 const MenuDiv = styled.div`
+
+    & a{
+        color:black !important;
+    }
+
 overflow-x:hidden;
     width:calc(100% - 40px);
     height:50px;

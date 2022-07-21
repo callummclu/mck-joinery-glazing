@@ -48,10 +48,16 @@ export interface HomepageProps{
 
 const Home: NextPage = ({ categories, homePage, contact }:any) => {
 
-    let categoryMapped = categories.map((e:any) => e.type)
+    let categoryMapped = categories.map((e:any) => e)
 
     const menuItems:MenuItems = {
-        items: ["Glazing","Joinery",categoryMapped[0],categoryMapped[1],"More..."]
+        items: [
+            {name:"Glazing",redirect:"gallery/Glazing"},
+            {name:"Joinery",redirect:"gallery/Joinery"},
+            {name:categoryMapped[0].type,redirect:`gallery/${categoryMapped[0].parent}/${categoryMapped[0].type}`},
+            {name:categoryMapped[1].type,redirect:`gallery/${categoryMapped[1].parent}/${categoryMapped[1].type}`},
+            {name:"More...",redirect:"gallery"}
+        ]
     }
 
     const showcaseImages: ImageShowcaseObj = {
@@ -88,6 +94,26 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
 
     return (
         <>
+         <Head>
+                  {/* Global Site Tag (gtag.js) - Google Analytics */}
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+                }}
+              />
+              <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
+      </Head>
         <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
         </Script>
         <Head>

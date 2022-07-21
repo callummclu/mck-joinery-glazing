@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import { MenuItems } from "./menubar"
+import { MenuItem, MenuItems } from "./menubar"
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import { useCallback, useState } from "react";
 
 export interface FooterProps{
-    items:string[];
+    items:MenuItem[];
     phone:string;
     email:string;
 }
@@ -19,7 +19,7 @@ export const Footer = (props:FooterProps) => {
                 <div className="grid">
                     <FooterItem className="sitemap">
                         <h1>Sitemap</h1>
-                        {props.items.map((e:any)=><p key={e}>{e}</p>)}
+                        {props.items.map((e:any)=><p key={e.name}><a href={e.redirect}>{e.name}</a></p>)}
                     </FooterItem>
                     <FooterItem className="contact">
                         <h1>Contact Us</h1>
