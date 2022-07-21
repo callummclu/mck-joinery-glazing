@@ -48,10 +48,10 @@ export interface HomepageProps{
 
 const Home: NextPage = ({ categories, homePage, contact }:any) => {
 
-    console.log(contact)
+    let categoryMapped = categories.map((e:any) => e.type)
 
     const menuItems:MenuItems = {
-        items: [...categories.map((e:any) => e.type),"more..."]
+        items: ["Glazing","Joinery",categoryMapped[0],categoryMapped[1],"More..."]
     }
 
     const showcaseImages: ImageShowcaseObj = {

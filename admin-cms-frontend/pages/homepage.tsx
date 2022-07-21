@@ -17,18 +17,18 @@ export async function getServerSideProps() {
 
 export const Homepage: NextPage = ({ homePage }:any) => {
 
-    let splashTextRef = useRef<HTMLInputElement>(null)
-    let aboutUsTextRef = useRef<HTMLInputElement>(null)
-    let contactUsTextRef = useRef<HTMLInputElement>(null)
+    let splashTextRef = useRef<HTMLTextAreaElement>(null)
+    let aboutUsTextRef = useRef<HTMLTextAreaElement>(null)
+    let contactUsTextRef = useRef<HTMLTextAreaElement>(null)
     
     let cardTitle1 = useRef<HTMLInputElement>(null)
-    let cardText1 = useRef<HTMLInputElement>(null)
+    let cardText1 = useRef<HTMLTextAreaElement>(null)
 
     let cardTitle2 = useRef<HTMLInputElement>(null)
-    let cardText2 = useRef<HTMLInputElement>(null)
+    let cardText2 = useRef<HTMLTextAreaElement>(null)
 
     let cardTitle3 = useRef<HTMLInputElement>(null)
-    let cardText3 = useRef<HTMLInputElement>(null)
+    let cardText3 = useRef<HTMLTextAreaElement>(null)
 
     let showcaseImage1 = useRef<HTMLInputElement>(null)
     let showcaseImage2 = useRef<HTMLInputElement>(null)
@@ -86,19 +86,19 @@ export const Homepage: NextPage = ({ homePage }:any) => {
 					variant="dashed"
 				/>
                 <h2>Title subtexts</h2>
-				<TextInput ref={splashTextRef} label="Under Title Text" defaultValue={homePage.splashText}/>
-                <TextInput ref={aboutUsTextRef} label="About Us Text" defaultValue={homePage.aboutUsText}/>
-                <TextInput ref={contactUsTextRef} label="Contact Us Text" defaultValue={homePage.contactUsText}/>
+				<Textarea ref={splashTextRef} label="Under Title Text" defaultValue={homePage.splashText}/>
+                <Textarea ref={aboutUsTextRef} label="About Us Text" defaultValue={homePage.aboutUsText}/>
+                <Textarea ref={contactUsTextRef} label="Contact Us Text" defaultValue={homePage.contactUsText}/>
                 <h2>Cards</h2>
                 <h4>Card 1</h4>
                 <TextInput ref={cardTitle1} label="Title" defaultValue={homePage.cardTitles[0]}/>
-                <TextInput ref={cardText1} label="Text" defaultValue={homePage.cardTexts[0]}/>
+                <Textarea ref={cardText1} label="Text" defaultValue={homePage.cardTexts[0]}/>
                 <h4>Card 2</h4>
                 <TextInput ref={cardTitle2} label="Title" defaultValue={homePage.cardTitles[1]}/>
-                <TextInput ref={cardText2} label="Text" defaultValue={homePage.cardTexts[1]}/>
+                <Textarea ref={cardText2} label="Text" defaultValue={homePage.cardTexts[1]}/>
                 <h4>Card 3</h4>
                 <TextInput ref={cardTitle3} label="Title" defaultValue={homePage.cardTitles[2]}/>
-                <TextInput ref={cardText3} label="Text" defaultValue={homePage.cardTexts[2]}/>
+                <Textarea ref={cardText3} label="Text" defaultValue={homePage.cardTexts[2]}/>
                 <h2>Showcase Images</h2>
                 <TextInput ref={showcaseImage1} label="Image 1" defaultValue={homePage.showcaseImages[0]}/>
                 <TextInput ref={showcaseImage2} label="Image 2" defaultValue={homePage.showcaseImages[1]}/>

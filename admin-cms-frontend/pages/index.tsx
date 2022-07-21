@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { Timeline, Text, Container,Button,Title,Divider } from '@mantine/core';
+import { CgWebsite } from 'react-icons/cg'
 import { BsImage } from 'react-icons/bs'
 import { IoHomeOutline, IoPersonOutline } from 'react-icons/io5'
 import { Nav } from '../components/navbar';
@@ -46,6 +47,15 @@ export const Index: NextPage = () => {
 					mb="lg"
 				>
 					Contact
+			</Button>
+			<Button 
+					onClick={()=>window.location.href = "http://mck-joinery-glazing.vercel.app"}
+					variant="default" 
+					fullWidth
+					leftIcon={<CgWebsite size={16}/>}
+					mb="lg"
+				>
+					View main site
 			</Button>
     </Container>
     </Nav>

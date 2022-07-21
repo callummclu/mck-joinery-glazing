@@ -49,6 +49,8 @@ const CardContainer = styled.div`
 
     & .text{
         grid-area:text;
+        height:auto !important;
+        padding-bottom:5px;
     }
 
     @media screen and (max-width:768px){
