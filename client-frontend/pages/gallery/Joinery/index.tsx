@@ -24,7 +24,7 @@ const Joinery: NextPage = ({ categories,contact}:any) => {
   
     let router = useRouter()
 
-    const categoriesMapped = categories.filter((cat:any)=>cat.parent === "Joinery").map((e:any) => <CategoryDiv onClick={()=>router.push(`gallery/${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>)
+    const categoriesMapped = categories.filter((cat:any)=>cat.parent === "Joinery").map((e:any) => <CategoryDiv key={e.parent+e.type} onClick={()=>router.push(`gallery/${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>)
   
   
 
