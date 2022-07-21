@@ -25,7 +25,7 @@ export const ScrollToTop = () => {
 
     return(
         <ScrollToTopButton onClick={onScrollPress} className={scrollPosition > 100 ? 'active' : ''}>
-            <IoIosArrowDropupCircle size={40}/>
+            <IoIosArrowDropupCircle color="#2a3c70" style={{boxShadow:"0 0 5px 0px lightgray"}} size={40}/>
         </ScrollToTopButton>
     )
 }

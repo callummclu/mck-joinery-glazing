@@ -2,6 +2,7 @@ import styled from "styled-components"
 import MCKLogoBW from '../public/MCK.png'
 import JoineryGlazing from '../public/Joinery|Glazing.png'
 import {HiMenuAlt2} from 'react-icons/hi'
+import {IoClose} from 'react-icons/io5'
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { ContactDetails } from "./appShell"
@@ -17,7 +18,11 @@ export const Nav = (props:ContactDetails) => {
         <>
             <NavBarStyled>
                 <LeftFixedDiv>
-                    <HiMenuAlt2 size={35} color={'white'} onClick={()=>setMenuToggle(!menuToggle)}/>
+                    {!menuToggle ? 
+                        <HiMenuAlt2 size={35} color={'white'} onClick={()=>setMenuToggle(!menuToggle)}/>
+                        :
+                        <IoClose size={35} color={'white'} onClick={()=>setMenuToggle(!menuToggle)}/>
+                    }
                 </LeftFixedDiv>
                 {menuToggle && <DropDownMenu>
                     <p><a href="#About-Us">About Us</a></p>
