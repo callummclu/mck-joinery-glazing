@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Script from 'next/script'
+import CookieConsent from 'react-cookie-consent'
 import styled from 'styled-components'
 import { AppShell, ContactDetails } from '../components/appShell'
 import { Banner } from '../components/Banner'
@@ -95,23 +96,7 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
     return (
         <>
          <Head>
-                  {/* Global Site Tag (gtag.js) - Google Analytics */}
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-              />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-                }}
-              />
+              <title>MCK Joinery Glazing</title>
               <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
       </Head>
         <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
@@ -153,6 +138,19 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
             </GrayContainer>
             <Footer {...footerItems}/>
         </AppShell>
+        {/* <CookieConsent
+          enableDeclineButton
+          location="bottom"
+          buttonText="Accept"
+          style={{ background: "#2a3c70" }}
+          acceptOnScrollPercentage={5}
+          acceptOnScroll={true}
+          buttonStyle={{ background: "#354B8C",color:"white", fontSize: "13px" }}
+          expires={150}
+          debug={true}
+        >
+  This website uses cookies to enhance the user experience.
+</CookieConsent> */}
         </>
     )
 }

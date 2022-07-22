@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { Footer, FooterProps } from '../../components/Footer'
 import { MenuItems } from '../../components/menubar'
 import { ImagesDiv } from './Joinery'
+import CookieConsent from 'react-cookie-consent'
 
 export async function getServerSideProps() {
   const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
@@ -28,7 +29,7 @@ export async function getServerSideProps() {
 const Gallery: NextPage = ({categories, contact, galleries}:any) => {
 
   let categoryMapped = categories.map((e:any) => e)
-  let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
+  let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>).reverse()
 
       const menuItems:MenuItems = {
         items: [
@@ -57,6 +58,9 @@ const Gallery: NextPage = ({categories, contact, galleries}:any) => {
 
   return(
     <>
+    <Head>
+      <title>MCK - Gallery</title>
+    </Head>
       <AppShell phone={contact.number} email={contact.email}>
         <WhiteBanner>
           <h1>Gallery</h1>
@@ -86,6 +90,7 @@ export const FiltersDiv = styled.div`
 `
 
 export const CategoryContainer = styled.div`
+  padding-top:20px;
   max-width: 800px;
   width:80%;
   display:flex;
@@ -106,6 +111,7 @@ export const CategoryDiv = styled.span`
   `
 
 export const WhiteBanner = styled.div`
+
   height:150px;
   width:100%;
   display:flex;
@@ -116,6 +122,8 @@ export const WhiteBanner = styled.div`
 
   & h1, & p{
     margin:5px;
+    padding-left:20px;
+    padding-right:20px;
   }
 `
 
