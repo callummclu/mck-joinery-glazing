@@ -19,6 +19,7 @@ public class GalleryItem {
     @Id
     public String id;
     public GalleryItem(String title, String image, String description, String categoryType){
+
         this.title = title;
         this.image = image;
         this.description = description;

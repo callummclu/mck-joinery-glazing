@@ -26,7 +26,7 @@ export const Contact = () => {
                 body:JSON.stringify({
                     name:nameRef!.current!.value,
                     email:emailRef!.current!.value,
-                    phone:emailRef!.current!.value,
+                    number:phoneRef!.current!.value,
                     message:queryRef!.current!.value
                 })
             }
@@ -72,8 +72,8 @@ export const Contact = () => {
                     <label htmlFor='contact-email'>Email</label>
                     <FormInput id='contact-email' type="email" ref={emailRef} required/>
 
-                    <label htmlFor='contact-email'>Phone</label>
-                    <FormInput id='contact-phone' type="phone" ref={phoneRef} required/>
+                    <label htmlFor='contact-phone'>Phone</label>
+                    <FormInput id='contact-phone' type="tel" ref={phoneRef} required/>
 
                     <label htmlFor='contact-question'>Question</label>
                     <FormTextarea id='contact-question' ref={queryRef} required data-attr={1}/>
