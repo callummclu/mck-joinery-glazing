@@ -5,7 +5,7 @@ import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { AppShell, ContactDetails } from '../../../components/appShell'
-import { CategoryContainer, CategoryDiv, FiltersDiv, WhiteBanner } from '..'
+import { CategoryContainer, CategoryDiv, FiltersDiv, ImageGalleryDiv, WhiteBanner } from '..'
 import { GrayContainer } from '../../../components/grayContainer'
 import { MenuItems } from '../../../components/menubar'
 import { Footer, FooterProps } from '../../../components/Footer'
@@ -19,10 +19,14 @@ export async function getServerSideProps() {
   const contactResult = await contactRes.json()
   const contact = contactResult[0]
 
-  return { props: { categories, contact }}
+  const galleryRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/gallery/parent/Joinery`)
+  const galleries = await galleryRes.json().catch(()=>[])
+
+
+  return { props: { categories, contact, galleries }}
 }
 
-const Joinery: NextPage = ({ categories,contact}:any) => {
+const Joinery: NextPage = ({ categories,contact,galleries}:any) => {
   
     let router = useRouter()
 
@@ -51,6 +55,9 @@ const Joinery: NextPage = ({ categories,contact}:any) => {
       ...contactDetails
   }
 
+  let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
+
+
 
 
   return(
@@ -67,9 +74,12 @@ const Joinery: NextPage = ({ categories,contact}:any) => {
               {categoriesMapped}
             </CategoryContainer>
           </FiltersDiv>
-          <ImagesDiv>
-          <div/><div/><div/><div/><div/>
-          </ImagesDiv>
+          <div style={{textAlign:"center",padding:"20px"}}>
+
+        {galleryImagesMapped.length>0 ? <ImagesDiv>
+          {galleryImagesMapped}
+          </ImagesDiv> : "no images to load..."}
+          </div>
         </GrayContainer>
         <Footer {...footerItems}/>
       </AppShell>
