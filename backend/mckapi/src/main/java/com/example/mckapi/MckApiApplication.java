@@ -40,7 +40,7 @@ public class MckApiApplication implements CommandLineRunner {
     public void run(String... args){
         if(galleryRepository.findAll().isEmpty()){
             List<String> imageArr = Collections.<String> emptyList();
-            galleryRepository.save(new GalleryItem("image Title",imageArr,"image description","Bay","beforeAfter"));
+            galleryRepository.save(new GalleryItem("image Title",imageArr,"image description","Bay"));
         }
         if(categoryRepository.findAll().isEmpty()){
             categoryRepository.save(new Category("Bay","hello","glazing"));
