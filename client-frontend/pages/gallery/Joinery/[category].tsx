@@ -4,9 +4,12 @@ import {TbBrandGithub} from 'react-icons/tb'
 import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { AppShell } from '../../../components/appShell'
+import { AppShell, ContactDetails } from '../../../components/appShell'
 import { CategoryContainer, CategoryDiv, FiltersDiv, WhiteBanner } from '..'
 import { GrayContainer } from '../../../components/grayContainer'
+import { Footer, FooterProps } from '../../../components/Footer'
+import { MenuItems } from '../../../components/menubar'
+import { ImagesDiv } from '.'
 
 export async function getServerSideProps() {
 
@@ -26,6 +29,30 @@ const SingleCategory: NextPage = ({ categories,contact}:any) => {
 
     const singleCategory = categories.filter((e:any)=> e.type == category)
 
+    let categoryMapped = categories.map((e:any) => e)
+
+
+      const menuItems:MenuItems = {
+        items: [
+            {name:"Glazing",redirect:"gallery/Glazing"},
+            {name:"Joinery",redirect:"gallery/Joinery"},
+            {name:categoryMapped[0].type,redirect:`gallery/${categoryMapped[0].parent}/${categoryMapped[0].type}`},
+            {name:categoryMapped[1].type,redirect:`gallery/${categoryMapped[1].parent}/${categoryMapped[1].type}`},
+            {name:"More...",redirect:"gallery"}
+        ]
+    }
+
+    const contactDetails: ContactDetails = {
+        phone: contact.number,
+        email: contact.email
+    }
+
+    const footerItems:FooterProps = {
+        ...menuItems,
+        ...contactDetails
+    }
+  
+
   return(
     <>
       <AppShell phone={contact.number} email={contact.email}>
@@ -35,8 +62,11 @@ const SingleCategory: NextPage = ({ categories,contact}:any) => {
         </WhiteBanner>
         
         <GrayContainer>
-          
+        <ImagesDiv>
+          <div/><div/><div/><div/><div/>
+          </ImagesDiv>
         </GrayContainer>
+        <Footer {...footerItems}/>
       </AppShell>
     </>
     )

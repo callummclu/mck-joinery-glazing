@@ -30,7 +30,9 @@ export const Contact = () => {
 
                     <label htmlFor='contact-question'>Question</label>
                     <FormTextarea id='contact-question' ref={queryRef} required data-attr={1}/>
-                    <FormButton type="submit">Submit</FormButton>
+                    <div>
+                        <FormButton type="submit">Submit</FormButton>
+                    </div>
                 </ContactForm>
             </FormCard>
         </>
@@ -90,6 +92,9 @@ const FormButton = styled.button`
     height: 2em;
     background: rgba(60,60,60,0.5);
     color:white;
+    margin-left:-10px;
+    background:#354B8C;
+    border-radius:0.5em;
     cursor:pointer;
     &:hover{
         background: rgba(60,60,60,1);
