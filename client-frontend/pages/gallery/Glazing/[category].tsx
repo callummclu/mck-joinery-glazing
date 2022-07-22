@@ -27,7 +27,7 @@ export async function getServerSideProps(context:any) {
   return { props: { categories, contact, galleries }}
 }
 
-const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
+const SingleCategoryG: NextPage = ({ categories,contact, galleries}:any) => {
     const router:any = useRouter()
     const {category}:any = router.query
 
@@ -81,4 +81,4 @@ const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
     )
 }
 
-export default SingleCategory
+export default SingleCategoryG

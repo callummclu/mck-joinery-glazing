@@ -1,16 +1,12 @@
 import type { NextPage } from 'next'
 import styled from "styled-components"
-import {TbBrandGithub} from 'react-icons/tb'
-import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
 import { AppShell, ContactDetails } from '../../components/appShell'
-import { Banner } from '../../components/Banner'
 import { GrayContainer } from '../../components/grayContainer'
 import { useRouter } from 'next/router'
 import { Footer, FooterProps } from '../../components/Footer'
 import { MenuItems } from '../../components/menubar'
 import { ImagesDiv } from './Joinery'
-import CookieConsent from 'react-cookie-consent'
 
 export async function getServerSideProps() {
   const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
