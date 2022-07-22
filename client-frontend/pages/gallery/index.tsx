@@ -19,13 +19,16 @@ export async function getServerSideProps() {
   const contactResult = await contactRes.json()
   const contact = contactResult[0]
 
-  return { props: { categories, contact }}
+  const galleryRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/gallery`)
+  const galleries = await galleryRes.json()
+
+  return { props: { categories, contact, galleries }}
 }
 
-const Gallery: NextPage = ({categories, contact}:any) => {
+const Gallery: NextPage = ({categories, contact, galleries}:any) => {
 
   let categoryMapped = categories.map((e:any) => e)
-
+  let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
 
       const menuItems:MenuItems = {
         items: [
@@ -67,7 +70,7 @@ const Gallery: NextPage = ({categories, contact}:any) => {
             </CategoryContainer>
           </FiltersDiv>
           <ImagesDiv>
-          <div/><div/><div/><div/><div/>
+            {galleryImagesMapped}
           </ImagesDiv>
         </GrayContainer>
         <Footer {...footerItems}/>
@@ -114,6 +117,12 @@ export const WhiteBanner = styled.div`
   & h1, & p{
     margin:5px;
   }
+`
+
+export const ImageGalleryDiv = styled.div`
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 `
 
 export default Gallery

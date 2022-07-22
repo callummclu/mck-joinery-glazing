@@ -5,13 +5,13 @@ import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { AppShell, ContactDetails } from '../../../components/appShell'
-import { CategoryContainer, CategoryDiv, FiltersDiv, WhiteBanner } from '..'
+import { CategoryContainer, CategoryDiv, FiltersDiv, ImageGalleryDiv, WhiteBanner } from '..'
 import { GrayContainer } from '../../../components/grayContainer'
 import { MenuItems } from '../../../components/menubar'
 import { Footer, FooterProps } from '../../../components/Footer'
 import { ImagesDiv } from '../Joinery'
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context:any) {
 
   const res = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category`)
   const categories = await res.json()
@@ -20,14 +20,18 @@ export async function getServerSideProps() {
   const contactResult = await contactRes.json()
   const contact = contactResult[0]
 
-  return { props: { categories, contact }}
+  const galleryRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/gallery/all/${context.params.category}`)
+  const galleries = await galleryRes.json()
+
+  return { props: { categories, contact, galleries }}
 }
 
-const SingleCategory: NextPage = ({ categories,contact}:any) => {
+const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
     const router:any = useRouter()
     const {category}:any = router.query
 
     const singleCategory = categories.filter((e:any)=> e.type == category)
+    let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
 
     let categoryMapped = categories.map((e:any) => e)
 
@@ -61,9 +65,11 @@ const SingleCategory: NextPage = ({ categories,contact}:any) => {
         </WhiteBanner>
         
         <GrayContainer>
-        <ImagesDiv>
-          <div/><div/><div/><div/><div/>
-          </ImagesDiv>
+        <div style={{textAlign:"center",padding:"20px"}}>
+        {galleryImagesMapped.length>0 ? <ImagesDiv>
+          {galleryImagesMapped}
+          </ImagesDiv> : "no images to load..."}
+        </div>
         </GrayContainer>
         <Footer {...footerItems}/>
       </AppShell>

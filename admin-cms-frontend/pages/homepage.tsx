@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { Timeline, Text, Container,Button,Title,Divider, TextInput, Textarea } from '@mantine/core';
+import { Timeline, Text, Container,Button,Title,Divider, TextInput, Textarea, MultiSelect } from '@mantine/core';
 import { BsImage } from 'react-icons/bs'
 import { IoHomeOutline, IoPersonOutline } from 'react-icons/io5'
 import { Nav } from '../components/navbar';
@@ -11,11 +11,16 @@ export async function getServerSideProps() {
     const homePageResult = await homeRes.json()
     const homePage = homePageResult[0]
 
-    return { props: {  homePage }}
+    const categoryRes =  await fetch("https://mck-joinery-glazing-backend.herokuapp.com/category")
+    const category = await categoryRes.json()
+
+    return { props: {  homePage,category }}
 }
 
 
-export const Homepage: NextPage = ({ homePage }:any) => {
+export const Homepage: NextPage = ({ homePage,category }:any) => {
+
+    const mappableCategories = category.map((e:any)=>{return {label:e.type,value:e.type}})
 
     let splashTextRef = useRef<HTMLTextAreaElement>(null)
     let aboutUsTextRef = useRef<HTMLTextAreaElement>(null)
@@ -34,6 +39,9 @@ export const Homepage: NextPage = ({ homePage }:any) => {
     let showcaseImage2 = useRef<HTMLInputElement>(null)
     let showcaseImage3 = useRef<HTMLInputElement>(null)
 
+    let shownCategory = useRef<HTMLInputElement>(null)
+
+
     const SaveItem = ()=>{
 		let splashText = splashTextRef
         let aboutUsText = aboutUsTextRef
@@ -51,6 +59,7 @@ export const Homepage: NextPage = ({ homePage }:any) => {
         let s1 = showcaseImage1
         let s2 = showcaseImage2
         let s3 = showcaseImage3
+        let sc = shownCategory
 
 		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/homepage/${homePage.id}`,{
 			method:"POST",
@@ -64,7 +73,8 @@ export const Homepage: NextPage = ({ homePage }:any) => {
 
 				cardTexts: [ct1!.current!.value,ct2!.current!.value,ct3!.current!.value],
                 cardTitles: [cT1!.current!.value,cT2!.current!.value,cT3!.current!.value],
-				showcaseImages: [s1!.current!.value,s2!.current!.value,s3!.current!.value]
+				showcaseImages: [s1!.current!.value,s2!.current!.value,s3!.current!.value],
+                shownCategory: [sc!.current!.value]
 			})
 		})
 			.then(async (res:any)=>{
@@ -103,8 +113,8 @@ export const Homepage: NextPage = ({ homePage }:any) => {
                 <TextInput ref={showcaseImage1} label="Image 1" defaultValue={homePage.showcaseImages[0]}/>
                 <TextInput ref={showcaseImage2} label="Image 2" defaultValue={homePage.showcaseImages[1]}/>
                 <TextInput ref={showcaseImage3} label="Image 3" defaultValue={homePage.showcaseImages[2]}/>
-
-               
+                <h2>Shown Menubar Categories</h2>
+                <MultiSelect ref={shownCategory} label="Shown Categories" defaultValue={homePage.shownCategories} maxSelectedValues={2} data={mappableCategories} />
 				
 				<Button onClick={SaveItem} my="md" mr="md">Save</Button>
     </Container>
