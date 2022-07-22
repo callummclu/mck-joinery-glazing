@@ -70,11 +70,10 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
 				splashText: splashText!.current!.value,
 				aboutUsText: aboutUsText!.current!.value,
 				contactUsText: contactUsText!.current!.value,
-
 				cardTexts: [ct1!.current!.value,ct2!.current!.value,ct3!.current!.value],
                 cardTitles: [cT1!.current!.value,cT2!.current!.value,cT3!.current!.value],
 				showcaseImages: [s1!.current!.value,s2!.current!.value,s3!.current!.value],
-                shownCategory:shownCategory
+                shownCategories:shownCategory
 			})
 		})
 			.then(async (res:any)=>{
