@@ -10,6 +10,7 @@ import { GrayContainer } from '../../../components/grayContainer'
 import { Footer, FooterProps } from '../../../components/Footer'
 import { MenuItems } from '../../../components/menubar'
 import { ImagesDiv } from '../Joinery'
+import { ImSad } from 'react-icons/im'
 
 export async function getServerSideProps() {
 
@@ -31,7 +32,7 @@ const Glazing: NextPage = ({ categories,contact, galleries}:any) => {
   
     let router = useRouter()
 
-    const categoriesMapped = categories.filter((cat:any)=>cat.parent === "Glazing").map((e:any) => <CategoryDiv key={e.parent+e.type} onClick={()=>router.push(`${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>)
+    const categoriesMapped = categories.filter((cat:any)=>cat.parent === "Glazing").map((e:any) => <CategoryDiv key={e.parent+e.type} onClick={()=>router.push(`${e.parent}/${e.type}`)}>{e.type}</CategoryDiv>).reverse()
   
     let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
 
@@ -62,6 +63,9 @@ const Glazing: NextPage = ({ categories,contact, galleries}:any) => {
 
   return(
     <>
+    <Head>
+    <title>MCK - Glazing</title>
+    </Head>
       <AppShell phone={contact.number} email={contact.email}>
         <WhiteBanner>
           <h1>Glazing</h1>
@@ -74,11 +78,11 @@ const Glazing: NextPage = ({ categories,contact, galleries}:any) => {
               {categoriesMapped}
             </CategoryContainer>
           </FiltersDiv>
-          <div style={{textAlign:"center",padding:"20px"}}>
+          <div style={{minHeight:"200px",textAlign:"center",padding:"20px",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
 
         {galleryImagesMapped.length>0 ? <ImagesDiv>
           {galleryImagesMapped}
-          </ImagesDiv> : "no images to load..."}
+          </ImagesDiv> :<><ImSad size={64}/><p>There are no images here...</p></>}
           </div>
         </GrayContainer>
         <Footer {...footerItems}/>

@@ -1,5 +1,9 @@
 import { useRef } from "react"
 import styled from "styled-components"
+import ReCAPTCHA from "react-google-recaptcha";
+import React from "react";
+import { showNotification } from "@mantine/notifications";
+import {MdError} from 'react-icons/md'
 
 export const Contact = () => {
   
@@ -8,32 +12,59 @@ export const Contact = () => {
     const queryRef = useRef<HTMLTextAreaElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
 
+    const recaptchaRef = React.createRef<ReCAPTCHA>()
+
     const contactSubmit = (e:any) => {
         e.preventDefault()
-        // console.log(nameRef.current?.value, emailRef.current?.value, queryRef.current?.value)
-        fetch("https://mck-joinery-glazing-backend.herokuapp.com/form/send",
-        {
-            method:"POST",
-            headers:{
-				'Content-Type': 'application/json'
-			},
-            body:JSON.stringify({
-                name:nameRef!.current!.value,
-                email:emailRef!.current!.value,
-                phone:emailRef!.current!.value,
-                message:queryRef!.current!.value
+        if(recaptchaRef.current?.getValue()){
+            fetch("https://mck-joinery-glazing-backend.herokuapp.com/form/send",
+            {
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                    name:nameRef!.current!.value,
+                    email:emailRef!.current!.value,
+                    phone:emailRef!.current!.value,
+                    message:queryRef!.current!.value
+                })
+            }
+            ).then(async (res:any) => {
+                let res_json = await res.json()
+                console.log(res_json)
+                
+            })
+            showNotification({
+                title: 'Message Received',
+                message:"We will get back to you shortly",
+                color:"green"
+            })
+            recaptchaRef.current?.reset();
+
+            (document.getElementById("contactForm") as HTMLFormElement)!.reset()
+        } else {
+            showNotification({
+                title: 'Verification Error',
+                message:"Please enter the ReCAPTCHA.",
+                color:'red',
+                icon:<MdError/>
             })
         }
-        ).then(async (res:any) => {
-            let res_json = await res.json()
-            console.log(res_json)
-        })
-
     }
+
+    const onReCAPTCHAChange = (captchaCode:any) => {
+        if(!captchaCode){
+            return
+        }
+
+        recaptchaRef.current?.reset()
+    }
+
     return(
         <>
             <FormCard>
-                <ContactForm onSubmit={contactSubmit}>
+                <ContactForm onSubmit={contactSubmit} id="contactForm">
 
                     <label htmlFor='contact-name'>Name</label>
                     <FormInput id='contact-name' type="text" ref={nameRef} required/>
@@ -46,6 +77,12 @@ export const Contact = () => {
 
                     <label htmlFor='contact-question'>Question</label>
                     <FormTextarea id='contact-question' ref={queryRef} required data-attr={1}/>
+                    <ReCAPTCHA
+                        style={{marginLeft:"-20px"}}
+                        ref={recaptchaRef}
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+
+                    />
                     <div>
                         <FormButton type="submit">Submit</FormButton>
                     </div>
@@ -108,6 +145,7 @@ const FormButton = styled.button`
     height: 2em;
     background: rgba(60,60,60,0.5);
     color:white;
+    font-size:16px;
     margin-left:-10px;
     background:#354B8C;
     border-radius:0.5em;

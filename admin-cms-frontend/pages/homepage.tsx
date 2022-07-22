@@ -61,6 +61,8 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
         let s3 = showcaseImage3
         let sc = shownCategory
 
+        console.log(sc.current?.value)
+
 		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/homepage/${homePage.id}`,{
 			method:"POST",
 			headers:{

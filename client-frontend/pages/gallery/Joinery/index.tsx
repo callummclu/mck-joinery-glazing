@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import styled from "styled-components"
-import {TbBrandGithub} from 'react-icons/tb'
-import styles from '../../styles/Home.module.css'
+import {ImSad} from 'react-icons/im'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { AppShell, ContactDetails } from '../../../components/appShell'
@@ -55,13 +54,16 @@ const Joinery: NextPage = ({ categories,contact,galleries}:any) => {
       ...contactDetails
   }
 
-  let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
+  let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>).reverse()
 
 
 
 
   return(
     <>
+    <Head>
+    <title>MCK - Joinery</title>
+    </Head>
       <AppShell phone={contact.number} email={contact.email}>
         <WhiteBanner>
           <h1>Joinery</h1>
@@ -74,11 +76,11 @@ const Joinery: NextPage = ({ categories,contact,galleries}:any) => {
               {categoriesMapped}
             </CategoryContainer>
           </FiltersDiv>
-          <div style={{textAlign:"center",padding:"20px"}}>
+          <div style={{minHeight:"200px",textAlign:"center",padding:"20px",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
 
         {galleryImagesMapped.length>0 ? <ImagesDiv>
           {galleryImagesMapped}
-          </ImagesDiv> : "no images to load..."}
+          </ImagesDiv> : <><ImSad size={64}/><p>There are no images here...</p></>}
           </div>
         </GrayContainer>
         <Footer {...footerItems}/>
@@ -90,12 +92,11 @@ const Joinery: NextPage = ({ categories,contact,galleries}:any) => {
 export const ImagesDiv = styled.div`
   display:flex;
   flex-wrap:wrap;
-
   gap:25px;
-  width:100%;
+  width:90%;
   justify-content:center;
   align-items:center;
-
+  margin-left:5%;
   & div{
     width: 350px;
     height: 200px;

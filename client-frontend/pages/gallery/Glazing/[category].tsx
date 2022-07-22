@@ -10,6 +10,7 @@ import { GrayContainer } from '../../../components/grayContainer'
 import { MenuItems } from '../../../components/menubar'
 import { Footer, FooterProps } from '../../../components/Footer'
 import { ImagesDiv } from '../Joinery'
+import { ImSad } from 'react-icons/im'
 
 export async function getServerSideProps(context:any) {
 
@@ -26,12 +27,12 @@ export async function getServerSideProps(context:any) {
   return { props: { categories, contact, galleries }}
 }
 
-const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
+const SingleCategoryG: NextPage = ({ categories,contact, galleries}:any) => {
     const router:any = useRouter()
     const {category}:any = router.query
 
     const singleCategory = categories.filter((e:any)=> e.type == category)
-    let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>)
+    let galleryImagesMapped = galleries.map((e:any)=><ImageGalleryDiv key={e.id} style={{backgroundImage:`url("${e.image}")`}}/>).reverse()
 
     let categoryMapped = categories.map((e:any) => e)
 
@@ -58,6 +59,9 @@ const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
   
   return(
     <>
+    <Head>
+    <title>MCK - {category}</title>
+    </Head>
       <AppShell phone={contact.number} email={contact.email}>
         <WhiteBanner>
           <h1>{category}</h1>
@@ -65,10 +69,10 @@ const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
         </WhiteBanner>
         
         <GrayContainer>
-        <div style={{textAlign:"center",padding:"20px"}}>
+        <div style={{minHeight:"200px",textAlign:"center",padding:"20px",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
         {galleryImagesMapped.length>0 ? <ImagesDiv>
           {galleryImagesMapped}
-          </ImagesDiv> : "no images to load..."}
+          </ImagesDiv> : <><ImSad size={64}/><p>There are no images here...</p></>}
         </div>
         </GrayContainer>
         <Footer {...footerItems}/>
@@ -77,4 +81,4 @@ const SingleCategory: NextPage = ({ categories,contact, galleries}:any) => {
     )
 }
 
-export default SingleCategory
+export default SingleCategoryG
