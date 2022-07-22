@@ -46,8 +46,8 @@ export const AddCategory: NextPage = () => {
 					my="xs" 
 					variant="dashed"
 				/>
-				<TextInput ref={typeRef} label="Title" />
-				<TextInput ref={commentaryRef} label="Commentary" />
+				<TextInput ref={typeRef} label="Title" required/>
+				<TextInput ref={commentaryRef} label="Commentary" required/>
 			 	<Select
 			 		ref={parentCategoryRef}
 					label="Pick a Parent Category"
@@ -56,6 +56,7 @@ export const AddCategory: NextPage = () => {
 						{ value: 'glazing', label: 'Glazing' },
 						{ value: 'joninery', label: 'Joinery' }
 					]}
+					required
 			    />
 				<Button onClick={SaveCategory} my="md" mr="md">Save Changes</Button>
 				<Button onClick={()=>window.location.href = (window.location.origin + '/gallery')} my="md" variant="outline">Go Back</Button>
