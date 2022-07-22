@@ -6,6 +6,7 @@ import {IoClose} from 'react-icons/io5'
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { ContactDetails } from "./appShell"
+import { redirect } from "next/dist/server/api-utils"
 
 export const Nav = (props:ContactDetails) => {
     
@@ -29,7 +30,7 @@ export const Nav = (props:ContactDetails) => {
                     <p><a href="#Contact-Us">Contact Us</a></p>
                     <p><a onClick={() => router.push('/gallery')}>Gallery</a></p>
                 </DropDownMenu>}
-                <LogoDiv/>
+                <LogoDiv onClick={()=>window.location.href = window.location.origin}/>
                 <SubLogoDiv/>
                 <RightFixedItems>
                     <p><a href="#About-Us">About Us</a></p>
@@ -114,6 +115,7 @@ const LogoDiv = styled.div`
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
+    cursor:pointer;
     @media screen and (min-width: 768px){
         margin-left: 20px;
     }

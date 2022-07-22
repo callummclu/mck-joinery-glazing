@@ -51,8 +51,8 @@ export const EditCategory: NextPage = () => {
 					variant="dashed"
 				/>
 				<form onSubmit={SaveCategory}>
-				<TextInput defaultValue={data?.type} ref={typeRef} label="Title" />
-				<TextInput defaultValue={data?.commentary} ref={commentaryRef} label="Commentary" />
+				<TextInput defaultValue={data?.type} ref={typeRef} label="Title" required/>
+				<TextInput defaultValue={data?.commentary} ref={commentaryRef} label="Commentary" required/>
 				<Select
 					required
 			 		ref={parentCategoryRef}
