@@ -3,14 +3,14 @@ import type { AppProps } from 'next/app'
 import { MantineProvider } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import Script from 'next/script'
+
+import Link from 'next/link'
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-          <Head>
-              <link rel="shortcut icon" href="/public/favicon.ico"/>
-          </Head>    
+
           <Script
                 id="google-analytics"
                 async
