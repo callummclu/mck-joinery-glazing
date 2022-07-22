@@ -26,8 +26,14 @@ public class GalleryController {
 
     @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
     @RequestMapping(value="/gallery/all/{category}",method= RequestMethod.GET,produces= MediaType.APPLICATION_JSON_VALUE)
-    public List<GalleryItem> Gallery(@PathVariable String category){
+    public List<GalleryItem> AddGallery(@PathVariable String category){
         return galleryRepository.findByCategory(category);
+    }
+    
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/"})
+    @RequestMapping(value="/gallery/parent/{parent}",method= RequestMethod.GET,produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<GalleryItem> Gallery(@PathVariable String parent){
+        return galleryRepository.findByCategory(parent);
     }
 
 

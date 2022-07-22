@@ -20,9 +20,11 @@ public class Homepage {
     public List<String> cardTexts;
     @Field
     public List<String> showcaseImages;
+    @Field
+    public List<String> shownCategories;
     @Id
     public String id;
-    public Homepage(String splashText, String aboutUsText, String contactUsText, List<String> cardTitles, List<String> cardTexts, List<String> showcaseImages){
+    public Homepage(String splashText, String aboutUsText, String contactUsText, List<String> cardTitles, List<String> cardTexts, List<String> showcaseImages, List<String> shownCategories){
         this.id = UUID.randomUUID().toString();
         this.aboutUsText = aboutUsText;
         this.cardTexts = cardTexts;
@@ -30,10 +32,11 @@ public class Homepage {
         this.contactUsText = contactUsText;
         this.splashText = splashText;
         this.showcaseImages = showcaseImages;
+        this.shownCategories = shownCategories;
     }
     public void setId(String id){this.id = id;}
     @Override
     public String toString() {
-        return String.format("Homepage[id='%s',splashText='%s',aboutUsText='%s',contactUsText='%s',cardTitles='%s',cardTexts='%s',showcaseImages='%s']",id,splashText,aboutUsText,contactUsText,cardTitles,cardTexts,showcaseImages);
+        return String.format("Homepage[id='%s',splashText='%s',aboutUsText='%s',contactUsText='%s',cardTitles='%s',cardTexts='%s',showcaseImages='%s',shownCategories='%s']",id,splashText,aboutUsText,contactUsText,cardTitles,cardTexts,showcaseImages,shownCategories);
     }
 }

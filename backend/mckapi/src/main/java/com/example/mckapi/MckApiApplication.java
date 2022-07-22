@@ -39,8 +39,7 @@ public class MckApiApplication implements CommandLineRunner {
     @Override
     public void run(String... args){
         if(galleryRepository.findAll().isEmpty()){
-            List<String> imageArr = Collections.<String> emptyList();
-            galleryRepository.save(new GalleryItem("image Title",imageArr,"image description","Bay","beforeAfter"));
+            galleryRepository.save(new GalleryItem("image Title","imageData","image description","Bay"));
         }
         if(categoryRepository.findAll().isEmpty()){
             categoryRepository.save(new Category("Bay","hello","glazing"));
@@ -52,7 +51,9 @@ public class MckApiApplication implements CommandLineRunner {
                 "bdwauib wdiwadwubai awwndj kabdy wvajhds jbuwaiv dhjasbu dia", 
                 Arrays.asList("Card 1", "Card 2", "Card 3"), 
                 Arrays.asList("dwadwadacd wavdwad adaw cdwcwdacdaw aw dcaw cdawdwa cdwac ","dawcdwacdcwa cdwcda dwad cwa wadc wadc wa","dcwadwa awd cdwawcdwacdwaawdcawdwdaswacsada"), 
-                Arrays.asList("1","2","3")));
+                Arrays.asList("1","2","3"),
+                Arrays.asList("Bay Windows","Extensions")
+                ));
         }
         if(contactRepository.findAll().isEmpty()){
             contactRepository.save(new Contact("07857 073653", "mckjoinery.glazing@gmail.com"));
