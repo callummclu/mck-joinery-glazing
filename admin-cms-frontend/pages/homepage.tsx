@@ -39,8 +39,8 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
     let showcaseImage2 = useRef<HTMLInputElement>(null)
     let showcaseImage3 = useRef<HTMLInputElement>(null)
 
-    let [shownCategory,setShownCategory] = useState<string[]>()
-
+    let [shownCategory,setShownCategory] = useState<any>()
+    console.log(shownCategory)
 
     const SaveItem = ()=>{
 		let splashText = splashTextRef
@@ -74,7 +74,7 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
 				cardTexts: [ct1!.current!.value,ct2!.current!.value,ct3!.current!.value],
                 cardTitles: [cT1!.current!.value,cT2!.current!.value,cT3!.current!.value],
 				showcaseImages: [s1!.current!.value,s2!.current!.value,s3!.current!.value],
-                shownCategory
+                shownCategory:shownCategory
 			})
 		})
 			.then(async (res:any)=>{
@@ -114,7 +114,7 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
                 <TextInput ref={showcaseImage2} label="Image 2" defaultValue={homePage.showcaseImages[1]}/>
                 <TextInput ref={showcaseImage3} label="Image 3" defaultValue={homePage.showcaseImages[2]}/>
                 <h2>Shown Menubar Categories</h2>
-                <MultiSelect onChange={(e:any)=>setShownCategory(e)} label="Shown Categories" defaultValue={homePage.shownCategories.map((e:any)=>{return {label:e,value:e}})} maxSelectedValues={2} data={mappableCategories} />
+                <MultiSelect onChange={(e:any)=>setShownCategory(e)} label="Shown Categories" defaultValue={homePage.shownCategories?.map((e:any)=>{return {label:e,value:e}})} maxSelectedValues={2} data={mappableCategories} />
 				
 				<Button onClick={SaveItem} my="md" mr="md">Save</Button>
     </Container>
