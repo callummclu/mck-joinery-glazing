@@ -54,8 +54,8 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
         items: [
             {name:"Glazing",redirect:"gallery/Glazing"},
             {name:"Joinery",redirect:"gallery/Joinery"},
-            {name:categoryMapped[0].type,redirect:`gallery/${categoryMapped[0].parent}/${categoryMapped[0].type}`},
-            {name:categoryMapped[1].type,redirect:`gallery/${categoryMapped[1].parent}/${categoryMapped[1].type}`},
+            {name:homePage.shownCategories[0] || "",redirect:`gallery/${categoryMapped[0].parent}/${categoryMapped[0].type}`},
+            {name:homePage.shownCategories[1] || "",redirect:`gallery/${categoryMapped[1].parent}/${categoryMapped[1].type}`},
             {name:"More...",redirect:"gallery"}
         ]
     }

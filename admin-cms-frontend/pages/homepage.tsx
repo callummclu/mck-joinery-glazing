@@ -4,7 +4,7 @@ import { BsImage } from 'react-icons/bs'
 import { IoHomeOutline, IoPersonOutline } from 'react-icons/io5'
 import { Nav } from '../components/navbar';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export async function getServerSideProps() {
     const homeRes = await fetch(`https://mck-joinery-glazing-backend.herokuapp.com/homepage`)
@@ -39,7 +39,7 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
     let showcaseImage2 = useRef<HTMLInputElement>(null)
     let showcaseImage3 = useRef<HTMLInputElement>(null)
 
-    let shownCategory = useRef<HTMLInputElement>(null)
+    let [shownCategory,setShownCategory] = useState<string[]>()
 
 
     const SaveItem = ()=>{
@@ -59,9 +59,7 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
         let s1 = showcaseImage1
         let s2 = showcaseImage2
         let s3 = showcaseImage3
-        let sc = shownCategory
 
-        console.log(sc.current?.value)
 
 		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/homepage/${homePage.id}`,{
 			method:"POST",
@@ -76,7 +74,7 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
 				cardTexts: [ct1!.current!.value,ct2!.current!.value,ct3!.current!.value],
                 cardTitles: [cT1!.current!.value,cT2!.current!.value,cT3!.current!.value],
 				showcaseImages: [s1!.current!.value,s2!.current!.value,s3!.current!.value],
-                shownCategory: [sc!.current!.value]
+                shownCategory
 			})
 		})
 			.then(async (res:any)=>{
@@ -116,7 +114,7 @@ export const Homepage: NextPage = ({ homePage,category }:any) => {
                 <TextInput ref={showcaseImage2} label="Image 2" defaultValue={homePage.showcaseImages[1]}/>
                 <TextInput ref={showcaseImage3} label="Image 3" defaultValue={homePage.showcaseImages[2]}/>
                 <h2>Shown Menubar Categories</h2>
-                <MultiSelect ref={shownCategory} label="Shown Categories" defaultValue={homePage.shownCategories} maxSelectedValues={2} data={mappableCategories} />
+                <MultiSelect onChange={(e:any)=>setShownCategory(e)} label="Shown Categories" defaultValue={homePage.shownCategories} maxSelectedValues={2} data={mappableCategories} />
 				
 				<Button onClick={SaveItem} my="md" mr="md">Save</Button>
     </Container>
