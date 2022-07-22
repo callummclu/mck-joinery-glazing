@@ -14,16 +14,16 @@ export const EditCategory: NextPage = () => {
 	const parentCategoryRef = useRef<any>()
 
     const router:any = useRouter()
-    const {id}:any = router.query
+    const {category}:any = router.query
 
-    const {data,error} = useSWR(`https://mck-joinery-glazing-backend.herokuapp.com/category/${id}`,fetcher)
+    const {data,error} = useSWR(`https://mck-joinery-glazing-backend.herokuapp.com/category/${category}`,fetcher)
 
     const SaveCategory = () => {
 		let type:any = typeRef
 		let commentary:any = commentaryRef
 		let parent:any = parentCategoryRef
 
-		fetch(`http://localhost:8080/category/edit/${id}`,{
+		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category/edit/${category}`,{
 			method:"POST",
 			headers:{
 				'Content-Type':'application/json'
