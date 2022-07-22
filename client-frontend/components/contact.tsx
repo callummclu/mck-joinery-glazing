@@ -11,7 +11,23 @@ export const Contact = () => {
     const contactSubmit = (e:any) => {
         e.preventDefault()
         // console.log(nameRef.current?.value, emailRef.current?.value, queryRef.current?.value)
-        alert(`Hey, ${nameRef.current?.value}. Thanks for your message, we'll get back to you on ${emailRef.current?.value}`)
+        fetch("https://mck-joinery-glazing-backend.herokuapp.com/form/send",
+        {
+            method:"POST",
+            headers:{
+				'Content-Type': 'application/json'
+			},
+            body:JSON.stringify({
+                name:nameRef!.current!.value,
+                email:emailRef!.current!.value,
+                phone:emailRef!.current!.value,
+                message:queryRef!.current!.value
+            })
+        }
+        ).then(async (res:any) => {
+            let res_json = await res.json()
+            console.log(res_json)
+        })
 
     }
     return(
