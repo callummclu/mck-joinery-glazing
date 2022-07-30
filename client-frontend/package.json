@@ -6,7 +6,8 @@
     "dev": "next dev -p 5050",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild":"next-sitemap"
   },
   "dependencies": {
     "@mantine/core": "^4.2.12",
@@ -15,6 +16,7 @@
     "@react-google-maps/api": "^2.12.1",
     "babel-preset-next": "^1.4.0",
     "next": "12.2.2",
+    "next-sitemap": "^3.1.15",
     "react": "18.2.0",
     "react-cookie-consent": "^7.5.0",
     "react-dom": "18.2.0",
