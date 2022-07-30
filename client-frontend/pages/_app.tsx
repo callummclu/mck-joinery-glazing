@@ -13,10 +13,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Head>
             <meta name="keywords" content="glazing,joinery,work,quality,windows,extentions,doors"/>
             <meta name="description" content="Quality Glazing and Joinery work done to the highest quality."/>
-            <meta property="og:title" content="MCK Joinery Glazing">
-            <meta property="og:description" content="Quality Glazing and Joinery work done to the highest quality.">
-            <meta property="og:image" content="https://i.imgur.com/HV0Nwwt.png">
-            <meta property="og:url" content="https://mckjoineryglazing.co.uk"></meta>
+            <meta property="og:title" content="MCK Joinery Glazing"/>
+            <meta property="og:description" content="Quality Glazing and Joinery work done to the highest quality."/>
+            <meta property="og:image" content="https://i.imgur.com/HV0Nwwt.png"/>
+            <meta property="og:url" content="https://mckjoineryglazing.co.uk"/>
           </Head>
           <Script
                 id="google-analytics"
