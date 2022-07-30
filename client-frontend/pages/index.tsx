@@ -125,12 +125,12 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
                 <MenuBar {...menuItems}/>
                 <ImageShowcase {...showcaseImages}/>
                 <CenteredTextDiv id="About-Us">
-                    <h1>About Us</h1>
+                    <h2>About Us</h2>
                     <p>{aboutUsText}</p>
                 </CenteredTextDiv>
                 <CardContainer {...cardDetails}/>
                 <CenteredTextDiv id="Contact-Us">
-                    <h1>Contact Us</h1>
+                    <h2>Contact Us</h2>
                     <p>{contactUsText}</p>
                 </CenteredTextDiv>
                 <Contact/>
@@ -148,6 +148,9 @@ const CenteredTextDiv = styled.div`
     align-items:center;
     text-align:center;
     padding-bottom:50px;
+    & h2 {
+        font-size: 32px;
+    }
     & p{ 
         width:40%;
         min-width: 350px;

@@ -18,11 +18,11 @@ export const Footer = (props:FooterProps) => {
             <FooterGrid>
                 <div className="grid">
                     <FooterItem className="sitemap">
-                        <h1>Sitemap</h1>
+                        <h3>Sitemap</h3>
                         {props.items.map((e:any)=><p key={e.name}><a href={e.redirect}>{e.name}</a></p>)}
                     </FooterItem>
                     <FooterItem className="contact">
-                        <h1>Contact Us</h1>
+                        <h3>Contact Us</h3>
                         <p>{props.phone}</p>
                         <p>{props.email}</p>
                         <p><BsFacebook style={{padding:"5px"}}/><BsInstagram style={{padding:"5px"}}/></p>
@@ -62,9 +62,13 @@ const FooterGrid = styled.div`
     align-items:center;
     justify-content:center;
 
+    & h3{
+        font-size:32px;
+    }
+
     @media screen and (max-width: 1000px){
 
-        & h1{
+        & h3{
             font-size: 22px;
         }
 
