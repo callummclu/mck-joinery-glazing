@@ -10,7 +10,10 @@ import Head from 'next/head'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-
+          <Head>
+            <meta name="keywords" content="glazing,joinery,work,quality,windows,extentions,doors"/>
+            <meta name="description" content="Quality Glazing and Joinery work done to the highest quality."/>
+          </Head>
           <Script
                 id="google-analytics"
                 async
