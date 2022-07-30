@@ -17,6 +17,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             <meta property="og:description" content="Quality Glazing and Joinery work done to the highest quality."/>
             <meta property="og:image" content="https://i.imgur.com/HV0Nwwt.png"/>
             <meta property="og:url" content="https://mckjoineryglazing.co.uk"/>
+            <meta name="theme-color" content="#354B8C"/>
+            <link rel="apple-touch-icon" href="public/MCKJoinery Logo B&W copy 4.png"></link>
           </Head>
           <Script
                 id="google-analytics"

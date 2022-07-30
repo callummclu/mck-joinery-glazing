@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import Script from 'next/script'
 import styled from 'styled-components'
 import { AppShell, ContactDetails } from '../components/appShell'
@@ -98,6 +99,7 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
               <title>MCK Joinery Glazing</title>
               <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
         </Head>
+        <Link rel="manifest" href="/manifest.json"/>
         <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
         </Script>
         <Head>

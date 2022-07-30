@@ -1,0 +1,18 @@
+{
+    "short_name": "MCK",
+    "name": "MCK Joinery Glazing",
+    "icons": [
+      {
+        "src": "public/MCKJoinery Logo B&W copy 4.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "https://mckjoineryglazing.co.uk",
+    "background_color": "#354B8C",
+    "display": "browser",
+    "scope": "/",
+    "theme_color": "#354B8C",
+    "description": "The best deals on joinery and glazing."
+}
+  
