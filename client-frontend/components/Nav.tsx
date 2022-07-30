@@ -35,7 +35,7 @@ export const Nav = (props:ContactDetails) => {
                 <RightFixedItems>
                     <p><a href="#About-Us">About Us</a></p>
                     <p><a href="#Contact-Us">Contact Us</a></p>
-                    <p><a onClick={() => router.push('/gallery')}>Gallery</a></p>
+                    <p><a href="gallery">Gallery</a></p>
                 </RightFixedItems>
             </NavBarStyled>
             <NavUnder>
