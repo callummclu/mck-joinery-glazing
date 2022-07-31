@@ -16,12 +16,14 @@ export const AddSingleGallery: NextPage = (props:any) => {
 
 	const titleRef = useRef<HTMLInputElement>() as React.Ref<HTMLInputElement>
 	const descriptionRef = useRef<HTMLTextAreaElement>() as React.Ref<HTMLTextAreaElement>
+	const parentCategoryRef = useRef<any>()
 
 	const [ImageData, setImageData] = useState<string[]>()
 
 	const SaveItem = ()=>{
 		let title:any = titleRef
 		let description:any = descriptionRef
+		let parent:any = parentCategoryRef
 
 		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/gallery/${category}/add`,{
 			method:"POST",
@@ -32,7 +34,8 @@ export const AddSingleGallery: NextPage = (props:any) => {
 				title: title!.current.value,
 				image: ImageData || '',
 				description: description!.current.value,
-				categoryType: category
+				categoryType: category,
+				parent: parent.current.value
 			})
 		})
 			.then(async (res:any)=>{
@@ -74,6 +77,16 @@ export const AddSingleGallery: NextPage = (props:any) => {
 
 				<TextInput ref={titleRef} label="Title"/>
 				<Textarea ref={descriptionRef} label="Description"/>
+				<Select
+			 		ref={parentCategoryRef}
+					label="Pick a Parent Category"
+					placeholder=""
+					data={[
+						{ value: 'glazing', label: 'Glazing' },
+						{ value: 'joninery', label: 'Joinery' }
+					]}
+					required
+			    />
 				<Button onClick={SaveItem} my="md" mr="md">Add Item</Button>
 			</Container>
             </Nav>
