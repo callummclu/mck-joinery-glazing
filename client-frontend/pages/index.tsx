@@ -5,6 +5,7 @@ import Script from 'next/script'
 import styled from 'styled-components'
 import { AppShell, ContactDetails } from '../components/appShell'
 import { Banner } from '../components/Banner'
+import {AiFillStar} from 'react-icons/ai'
 import { CardContainer } from '../components/cardContainer'
 import Contact from '../components/contact'
 import { Footer, FooterProps } from '../components/Footer'
@@ -88,7 +89,7 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
     const TrustpilotWidget = () => {
         return(
             <div className="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="62d6dfaead4cf99707edd7ad" data-style-height="24px" data-style-width="100%" data-theme="light" data-without-reviews-preferred-string-id="2">
-                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app">Trustpilot</a>
+                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app">Check out Mck Joinery Glazing on <AiFillStar/>Trustpilot</a>
             </div>
         )
     }
