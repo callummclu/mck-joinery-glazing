@@ -10,6 +10,11 @@ const GalleryCategories: NextPage = () => {
     const [categories,setCategories] = useState<any[]>()
     let {data,error}:any =  useSWR("https://mck-joinery-glazing-backend.herokuapp.com/category",fetcher)
 	const removeCategory = (id:string) => {
+
+		fetch(`https://mck-joinery-glazing-backend.herokuapp.com/gallery/category/${id}`,{
+			method:"DELETE"
+		})
+
 	 	fetch(`https://mck-joinery-glazing-backend.herokuapp.com/category/${id}`,{
 			method:"DELETE"
 		}).then(async (res:any)=> {
