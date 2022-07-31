@@ -4,7 +4,7 @@ import { AppShell, ContactDetails } from '../components/appShell'
 import { Footer, FooterProps } from '../components/Footer'
 import { MenuItems } from '../components/menubar'
 
-export const FourOhFour = ({homePage,contact,categories}:any) => {
+export const FiveHundred = ({homePage,contact,categories}:any) => {
 
   const contactDetails = {
     phone: "07857 073653",
@@ -15,7 +15,7 @@ export const FourOhFour = ({homePage,contact,categories}:any) => {
     <>
       <AppShell {...contactDetails}>
         <F04>
-          <h1>404 - Page Not Found</h1>
+          <h1>500 - Server Error</h1>
           <Link href="/">
             <a>
               Go back home
@@ -38,4 +38,4 @@ const F04 = styled.div`
   }
 ` 
 
-export default FourOhFour
+export default FiveHundred

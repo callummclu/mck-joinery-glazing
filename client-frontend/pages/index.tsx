@@ -5,6 +5,7 @@ import Script from 'next/script'
 import styled from 'styled-components'
 import { AppShell, ContactDetails } from '../components/appShell'
 import { Banner } from '../components/Banner'
+import {AiFillStar} from 'react-icons/ai'
 import { CardContainer } from '../components/cardContainer'
 import Contact from '../components/contact'
 import { Footer, FooterProps } from '../components/Footer'
@@ -88,7 +89,7 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
     const TrustpilotWidget = () => {
         return(
             <div className="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="62d6dfaead4cf99707edd7ad" data-style-height="24px" data-style-width="100%" data-theme="light" data-without-reviews-preferred-string-id="2">
-                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app">Trustpilot</a>
+                <a href="https://uk.trustpilot.com/review/mck-joinery-glazing.vercel.app">Check out Mck Joinery Glazing on <AiFillStar/>Trustpilot</a>
             </div>
         )
     }
@@ -101,12 +102,13 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
         </Head>
         <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
         </Script>
-        <Head>
-              <script
+              <Script
+                id={'gtm'}
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
               />
-              <script
+              <Script
+                id={'ggana'}
                 dangerouslySetInnerHTML={{
                   __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -118,8 +120,6 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
               `,
                 }}
               />
-              <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
-      </Head>
         <AppShell {...contactDetails}>
             <Banner trustPilot={<TrustpilotWidget/>}/>
             <GrayContainer>

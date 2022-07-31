@@ -13,7 +13,7 @@ export const Banner = ({trustPilot}:any) => {
 }
 
 const BannerDiv = styled.div`
-    height: 350px;
+    height: 300px;
     width:100%;
     text-align:center;
     display:flex;

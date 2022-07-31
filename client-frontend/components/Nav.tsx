@@ -6,14 +6,13 @@ import {IoClose} from 'react-icons/io5'
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { ContactDetails } from "./appShell"
-import { redirect } from "next/dist/server/api-utils"
+import Link from "next/link"
 
 export const Nav = (props:ContactDetails) => {
     
     const [menuToggle, setMenuToggle] = useState(false);
 
     const router = useRouter()
-
 
     return(
         <>
@@ -26,21 +25,21 @@ export const Nav = (props:ContactDetails) => {
                     }
                 </LeftFixedDiv>
                 {menuToggle && <DropDownMenu>
-                    <p><a href="#About-Us">About Us</a></p>
-                    <p><a href="#Contact-Us">Contact Us</a></p>
-                    <p><a onClick={() => router.push('/gallery')}>Gallery</a></p>
+                    <p><Link href='/#About-Us'>About Us</Link></p>
+                    <p><Link href='/#Contact-Us'>Contact Us</Link></p>
+                    <p><a href="gallery">Gallery</a></p>
                 </DropDownMenu>}
-                <LogoDiv onClick={()=>window.location.href = window.location.origin}/>
+                <Link href="/"><LogoDiv/></Link>
                 <SubLogoDiv/>
                 <RightFixedItems>
-                    <p><a href="#About-Us">About Us</a></p>
-                    <p><a href="#Contact-Us">Contact Us</a></p>
+                    <p><Link href='/#About-Us'>About Us</Link></p>
+                    <p><Link href='/#Contact-Us'>Contact Us</Link></p>
                     <p><a href="gallery">Gallery</a></p>
                 </RightFixedItems>
             </NavBarStyled>
             <NavUnder>
-                    <p>{props.phone}</p>
-                    <p>{props.email}</p>
+                    <p><a href={`tel:${props.phone}`}>{props.phone}</a></p>
+                    <p><a href={`mailto:${props.email}`}>{props.email}</a></p>
             </NavUnder>
         </>
     )
