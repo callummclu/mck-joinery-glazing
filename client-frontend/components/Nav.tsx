@@ -29,7 +29,7 @@ export const Nav = (props:ContactDetails) => {
                     <p><Link href='/#Contact-Us'>Contact Us</Link></p>
                     <p><a href="gallery">Gallery</a></p>
                 </DropDownMenu>}
-                <LogoDiv onClick={()=>window.location.href = window.location.origin}/>
+                <Link href="/"><LogoDiv/></Link>
                 <SubLogoDiv/>
                 <RightFixedItems>
                     <p><Link href='/#About-Us'>About Us</Link></p>
@@ -38,8 +38,8 @@ export const Nav = (props:ContactDetails) => {
                 </RightFixedItems>
             </NavBarStyled>
             <NavUnder>
-                    <p>{props.phone}</p>
-                    <p>{props.email}</p>
+                    <p><a href={`tel:${props.phone}`}>{props.phone}</a></p>
+                    <p><a href={`mailto:${props.email}`}>{props.email}</a></p>
             </NavUnder>
         </>
     )
