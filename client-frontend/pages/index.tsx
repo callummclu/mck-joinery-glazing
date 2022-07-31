@@ -102,12 +102,13 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
         </Head>
         <Script id="trust-pilot" type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async>
         </Script>
-        <Head>
-              <script
+              <Script
+                id={'gtm'}
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
               />
-              <script
+              <Script
+                id={'ggana'}
                 dangerouslySetInnerHTML={{
                   __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -119,8 +120,6 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
               `,
                 }}
               />
-              <meta name="trustpilot-one-time-domain-verification-id" content="f4e4fc43-f133-4536-b8f0-83e60f52ed12"/>
-      </Head>
         <AppShell {...contactDetails}>
             <Banner trustPilot={<TrustpilotWidget/>}/>
             <GrayContainer>
