@@ -36,10 +36,10 @@ public class FormController {
     public FormController(){
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/","https://admin.mckjoineryglazing.co.uk"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/","https://admin.mckjoineryglazing.co.uk","https://mckjoineryglazing.co.uk"})
     @RequestMapping(value="/form/send",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public String sendForm(@RequestBody Form item) throws IOException {
-        Email from = new Email("mark@mckjoineryglazing.co.uk","MCK - Contact line");
+        Email from = new Email("mark@mckjoineryglazing.co.uk","MCK - "+item.name);
         String subject = "Message from "+ item.name;
         Email to = new Email("mckjoinery.glazing@gmail.com");
         String temp_msg = String.format("Here are the details of this message,<br/><br/><h4>name: %s</h4><h5>email: %s</h5><h5>phone: %s</h5><hr/><h5>Message</h5><p>%s</p><br/>", item.name,item.email,item.number,item.message);
