@@ -36,7 +36,7 @@ public class FormController {
     public FormController(){
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/","https://admin.mckjoineryglazing.co.uk","https://mckjoineryglazing.co.uk"})
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:5050","https://mck-joinery-glazing.vercel.app/","https://mck-joinery-glazing-admin.vercel.app/","https://admin.mckjoineryglazing.co.uk","https://www.mckjoineryglazing.co.uk"})
     @RequestMapping(value="/form/send",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public String sendForm(@RequestBody Form item) throws IOException {
         Email from = new Email("mark@mckjoineryglazing.co.uk","MCK - "+item.name);
