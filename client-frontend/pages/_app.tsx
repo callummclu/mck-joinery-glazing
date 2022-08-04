@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <>
                 <meta name="robots" content="noindex"></meta>
                 <meta name="googlebot" content="noindex"></meta>
+                <meta name="google-site-verification" content="qjIwQJA0jLsIU9z4SzzcCRj00kg-BDNlZM4UvGwtAGY" />
               </>
             )}
           </Head>
