@@ -7,6 +7,13 @@ import Script from 'next/script'
 import Link from 'next/link'
 import Head from 'next/head'
 
+function checkIfSiteIsVercel():boolean{
+  if (typeof window !== "undefined") {
+    return window.location.origin == "https://mck-joinery-glazing.vercel.app/"
+  }
+  return false
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -20,6 +27,12 @@ function MyApp({ Component, pageProps }: AppProps) {
             <meta name="theme-color" content="#354B8C"/>
             <link rel="apple-touch-icon" href="/MCKJoinery Logo B&W copy 4.png"></link>
             <link rel="manifest" href="/manifest.json"></link>
+            {checkIfSiteIsVercel() && (
+              <>
+                <meta name="robots" content="noindex"></meta>
+                <meta name="googlebot" content="noindex"></meta>
+              </>
+            )}
           </Head>
           <Script
                 id="google-analytics"
