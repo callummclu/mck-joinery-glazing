@@ -9,7 +9,7 @@ import Head from 'next/head'
 
 function checkIfSiteIsVercel():boolean{
   if (typeof window !== "undefined") {
-    return window.location.origin == "https://mck-joinery-glazing.vercel.app/"
+    return window.location.origin == "https://mck-joinery-glazing.vercel.app" || window.location.origin == "https://mck-joinery-glazing.vercel.app/"
   }
   return false
 }
