@@ -74,14 +74,14 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
     })
 
     const showcaseImages: ImageShowcaseObj = {
-        large:homePage.showcaseImages[0],
-        top:homePage.showcaseImages[1],
-        bottom:homePage.showcaseImages[2]
+        large:homePage?.showcaseImages[0] ?? "",
+        top:homePage?.showcaseImages[1] ?? "",
+        bottom:homePage?.showcaseImages[2] ?? ""
     }
 
     const contactDetails: ContactDetails = {
-        phone: contact.number,
-        email: contact.email
+        phone: contact?.number ?? "",
+        email: contact?.email ?? ""
     }
 
     const footerItems:FooterProps = {
@@ -89,12 +89,12 @@ const Home: NextPage = ({ categories, homePage, contact }:any) => {
         ...contactDetails
     }
 
-    const aboutUsText = homePage.aboutUsText;
-    const contactUsText = homePage.contactUsText;
+    const aboutUsText = homePage?.aboutUsText ?? ""; 
+    const contactUsText = homePage?.contactUsText ?? "";
 
     const cardDetails = {
-        cardTitles:homePage.cardTitles,
-        cardTexts:homePage.cardTexts
+        cardTitles:homePage?.cardTitles ?? "",
+        cardTexts:homePage?.cardTexts ?? ""
     }
 
     const TrustpilotWidget = () => {
