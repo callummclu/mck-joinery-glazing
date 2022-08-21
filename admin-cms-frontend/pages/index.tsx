@@ -49,7 +49,7 @@ export const Index: NextPage = () => {
 					Contact
 			</Button>
 			<Button 
-					onClick={()=>window.location.href = "http://mck-joinery-glazing.vercel.app"}
+					onClick={()=>window.location.href = "http://mckjoineryglazing.co.uk"}
 					variant="default" 
 					fullWidth
 					leftIcon={<CgWebsite size={16}/>}
